@@ -1,5 +1,5 @@
 // components/PortfolioGrid.jsx
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Grid,
   Card,
@@ -10,11 +10,19 @@ import {
   Typography,
   Button,
   styled,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import LaunchIcon from "@mui/icons-material/Launch";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
+
+import LaptopIcon from "@mui/icons-material/Laptop";
+import TabletMacIcon from "@mui/icons-material/TabletMac";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: "relative",
@@ -66,7 +74,13 @@ const ModalBox = styled(Box)(({ theme }) => ({
 }));
 
 const PortfolioGrid = ({ items }) => {
+  const [iframeDisplay, setIframeDisplay] = useState("laptop");
+  const [iframeSize, setIframeSize] = useState("100%");
+  const [isModalLoading, setIsModalLoading] = useState(true);
+
+  //modal
   const [open, setOpen] = useState(false);
+
   const [selectedItem, setSelectedItem] = useState(null);
   const theme = useTheme();
 
@@ -78,6 +92,13 @@ const PortfolioGrid = ({ items }) => {
   const handleClose = () => {
     setOpen(false);
     setSelectedItem(null);
+    setIsModalLoading(true);
+  };
+
+  const handleIframeSizeChange = (event) => {
+    // setIframeSize(event.target.value);
+
+    setIframeDisplay(event.target.value);
   };
 
   const navigate = useNavigate();
@@ -157,32 +178,26 @@ const PortfolioGrid = ({ items }) => {
                     Close
                   </Button>
                 </Box>
-                <Box
-                  component="img"
-                  src={selectedItem.largesrc}
-                  alt={selectedItem.title}
-                  sx={{
-                    width: "100%",
-                    maxHeight: 400,
-                    objectFit: "contain",
-                    borderRadius: theme.shape.borderRadius,
-                  }}
-                />
-                <Typography variant="h4" sx={{ fontWeight: 200 }}>
+
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: 200, margin: "auto" }}
+                >
                   {selectedItem.title}
                 </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{ color: theme.palette.text.secondary }}
-                >
-                  {selectedItem.description}
-                </Typography>
 
-                {selectedItem.iframeLink && (
+                {selectedItem.iframeLink ? (
                   <Box
                     sx={{
-                      width: { xs: "100%", sm: "80%", md: "70%", lg: "60%" },
+                      width: {
+                        xs: "100%",
+                      },
                       margin: "auto",
+                      px: {
+                        xs: 1,
+                        md: 5,
+                        lg: 5,
+                      },
                     }}
                   >
                     <Box
@@ -191,30 +206,255 @@ const PortfolioGrid = ({ items }) => {
                         position: "relative",
                         height: 0,
                         pb: "56.25%",
+
+                        backgroundImage:
+                          iframeDisplay === "laptop"
+                            ? `url("src/assets/laptop.png")`
+                            : iframeDisplay === "tablet"
+                            ? `url("src/assets/tablet.png")`
+                            : `url("src/assets/phone.png")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        overflow: "hidden",
                       }}
                     >
+                      {isModalLoading && (
+                        <Box className="iframe-loading-overlay">
+                          Loading preview...
+                        </Box>
+                      )}
+
                       <iframe
+                        scrolling="no"
+                        onLoad={() => setIsModalLoading(false)}
+                        className="iframe-preview"
                         id="inlineFrameExample"
                         title="Inline Frame Example"
                         style={{
+                          //   opacity: isModalLoading ? 0 : 1,
+                          overflow: "hidden",
                           margin: "auto",
                           position: "absolute",
-
+                          border: "none",
+                          borderRadius:
+                            iframeDisplay === "laptop"
+                              ? "3% 3% 0 0 "
+                              : iframeDisplay === "tablet"
+                              ? "3% 3% 0 0 "
+                              : 0,
                           left: "50%",
                           transform: "translateX(-50%)",
                           top: 0,
-                          height: "100%",
-                          width: "100%",
-                          zoom: 0.5,
-                          transition: "width 1s",
+                          marginTop:
+                            iframeDisplay === "laptop"
+                              ? `7px`
+                              : iframeDisplay === "tablet"
+                              ? `50px`
+                              : `11%`,
+
+                          height:
+                            iframeDisplay === "laptop"
+                              ? `93%`
+                              : iframeDisplay === "tablet"
+                              ? `50%`
+                              : `62%`,
+                          width:
+                            iframeDisplay === "laptop"
+                              ? `80%`
+                              : iframeDisplay === "tablet"
+                              ? `50%`
+                              : `18.9%`,
+                          zoom: 0.4,
+                          transition: "width 0.4s",
+                          scrollbarWidth: "none",
                         }}
                         // width="100%"
                         // height=""
                         src={selectedItem.href2}
                       ></iframe>
                     </Box>
+
+                    <FormControl
+                      component="fieldset"
+                      sx={{
+                        mt: 3,
+                        //mb: 2,
+                        pl: 1.5,
+                        display: "flex",
+                        justifyContent: "center",
+                        py: 0,
+
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color: "rgba(255,255,255,0.6)",
+                          alignSelf: "center",
+                        }}
+                      >
+                        Preview display
+                      </Typography>
+                      <RadioGroup
+                        row
+                        value={iframeDisplay}
+                        onChange={handleIframeSizeChange}
+                        sx={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <FormControlLabel
+                          value="laptop"
+                          control={
+                            <Radio
+                              sx={{
+                                color: theme.palette.text.secondary,
+                                "&.Mui-checked": {
+                                  color: theme.palette.primary.main,
+                                },
+                              }}
+                            />
+                          }
+                          label={
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                color: theme.palette.text.primary,
+                              }}
+                            >
+                              <LaptopIcon
+                                sx={{
+                                  mr: 0.5,
+                                  color: theme.palette.text.primary,
+                                }}
+                              />
+                              Laptop
+                            </Box>
+                          }
+                          sx={{
+                            color:
+                              iframeSize === "laptop"
+                                ? "#cf5600"
+                                : "rgba(255,255,255,0.7)",
+                            padding: "10px",
+                            "& .MuiFormControlLabel-label": {
+                              fontWeight: 400,
+                              fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                            },
+                          }}
+                        />
+                        <FormControlLabel
+                          value="tablet"
+                          control={
+                            <Radio
+                              sx={{
+                                color: theme.palette.text.primary,
+                                "&.Mui-checked": {
+                                  color: theme.palette.primary.main,
+                                },
+                              }}
+                            />
+                          }
+                          label={
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                color: theme.palette.text.primary,
+                              }}
+                            >
+                              <TabletMacIcon
+                                sx={{
+                                  mr: 0.5,
+                                  color: theme.palette.text.primary,
+                                }}
+                              />
+                              Tablet
+                            </Box>
+                          }
+                          sx={{
+                            color:
+                              iframeSize === "tablet"
+                                ? "#cf5600"
+                                : "rgba(255,255,255,0.7)",
+                            padding: "10px",
+                            "& .MuiFormControlLabel-label": {
+                              fontWeight: 400,
+                              fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                            },
+                          }}
+                        />
+                        <FormControlLabel
+                          value="phone"
+                          control={
+                            <Radio
+                              sx={{
+                                color: theme.palette.text.primary,
+
+                                "&.Mui-checked": {
+                                  color: "#cf5600",
+                                  color: theme.palette.primary.main,
+                                },
+                              }}
+                            />
+                          }
+                          label={
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                color: theme.palette.text.primary,
+                              }}
+                            >
+                              <SmartphoneIcon
+                                sx={{
+                                  mr: 0.5,
+                                  color: theme.palette.text.primary,
+                                }}
+                              />
+                              Mobile
+                            </Box>
+                          }
+                          sx={{
+                            //color: "rgba(255,255,255,0.7)",
+                            color:
+                              iframeSize === "phone"
+                                ? "#cf5600"
+                                : "rgba(255,255,255,0.7)",
+                            padding: "10px",
+                            "& .MuiFormControlLabel-label": {
+                              fontWeight: 400,
+                              fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                            },
+                          }}
+                        />
+                      </RadioGroup>
+                    </FormControl>
                   </Box>
+                ) : (
+                  <Box
+                    component="img"
+                    src={selectedItem.largesrc}
+                    alt={selectedItem.title}
+                    sx={{
+                      width: "100%",
+                      maxHeight: 400,
+                      objectFit: "contain",
+                      borderRadius: theme.shape.borderRadius,
+                    }}
+                  />
                 )}
+                <Typography
+                  variant="body1"
+                  sx={{ color: theme.palette.text.secondary }}
+                >
+                  {selectedItem.description}
+                </Typography>
+
                 <Box
                   sx={{
                     display: "flex",

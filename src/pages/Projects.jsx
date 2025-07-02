@@ -43,23 +43,26 @@ const Projects = () => {
         "A comprehensive meditation timer built in React, where users can create a custom soundscape, store and retrieve session data (firestore), view their history, see session data on weekly or monthly charts, earn badges for reaching milestones and more",
     },
     {
-      href: "https://example.com",
-      href2: "https://example.com",
+      href: "/projects/nc-news",
+      href2: "https://gjonesncnews.netlify.app",
+      iframeLink: "https://gjonesncnews.netlify.app",
 
-      largesrc: previews["../assets/previews/occupy-responsive.png"]?.default,
-      thumbnail: "src/assets/thumbs/occupy.jpg",
-      title: "Item 2",
-      description: "Description for item 2",
-    },
-    {
-      href: "https://example.com",
-      href2: "https://example.com",
-
-      largesrc: "src/assets/thumbs/occupy.jpg",
-      thumbnail: "src/assets/thumbs/occupy.jpg",
+      largesrc: "src/assets/previews/nc-news-lg.png",
+      thumbnail: "src/assets/thumbs/nc-news.png",
       title: "Item 1",
       description: "Description for item 1",
     },
+    {
+      href: "/projects/occupy",
+      href2: "https://www.gethsworld.com/occupy",
+      iframeLink: "https://www.gethsworld.com/occupy",
+
+      largesrc: previews["../assets/previews/occupy-responsive.png"]?.default,
+      thumbnail: "src/assets/thumbs/occupy.jpg",
+      title: "Occupy Sound",
+      description: "Description for item 2",
+    },
+
     {
       href: "https://example.com",
       largesrc: "src/assets/thumbs/occupy.jpg",
@@ -136,7 +139,7 @@ const Projects = () => {
         Collection of Previous Work
       </Typography>
 
-      <Box sx={{ width: "100", position: "relative" }} class="container">
+      <Box sx={{ width: "100", position: "relative" }} className="container">
         <PortfolioGrid items={items} />
       </Box>
     </Box>
