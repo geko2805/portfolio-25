@@ -24,6 +24,25 @@ import LaptopIcon from "@mui/icons-material/Laptop";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 
+// import Swiper core and required modules
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+  A11y,
+} from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+import { getThumbnail, loadProjectImages } from "../utils/loadImages";
+
 const StyledCard = styled(Card)(({ theme }) => ({
   position: "relative",
   height: 250,
@@ -73,7 +92,7 @@ const ModalBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const PortfolioGrid = ({ items }) => {
+const PortfolioGrid = ({ projects }) => {
   const [iframeDisplay, setIframeDisplay] = useState("laptop");
   const [iframeSize, setIframeSize] = useState("100%");
   const [isModalLoading, setIsModalLoading] = useState(true);
@@ -81,23 +100,28 @@ const PortfolioGrid = ({ items }) => {
   //modal
   const [open, setOpen] = useState(false);
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [fullSizeImages, setFullSizeImages] = useState([]);
+
   const theme = useTheme();
 
-  const handleOpen = (item) => {
-    setSelectedItem(item);
+  const openModal = async (projectId) => {
+    const project = projects.find((p) => p.id === projectId);
+    if (project) {
+      const images = await loadProjectImages(projectId);
+      setFullSizeImages(images);
+      setSelectedProject(project);
+    }
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const closeModal = () => {
+    setSelectedProject(null);
+    setFullSizeImages([]); // Clear images to free memory
     setOpen(false);
-    setSelectedItem(null);
-    setIsModalLoading(true);
   };
 
   const handleIframeSizeChange = (event) => {
-    // setIframeSize(event.target.value);
-
     setIframeDisplay(event.target.value);
   };
 
@@ -116,7 +140,7 @@ const PortfolioGrid = ({ items }) => {
       }}
     >
       <Grid container spacing={2} justifyContent="center">
-        {items.map((item, index) => (
+        {projects.map((project) => (
           <Grid
             item
             // size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
@@ -124,7 +148,7 @@ const PortfolioGrid = ({ items }) => {
             sm={6}
             md={4}
             lg={3}
-            key={index}
+            key={project.id}
             sx={{
               animationName: "fadeIn",
               animationDuration: "2s",
@@ -134,12 +158,12 @@ const PortfolioGrid = ({ items }) => {
               opacity: 0,
             }}
           >
-            <StyledCard onClick={() => handleOpen(item)}>
+            <StyledCard onClick={() => openModal(project.id)}>
               <CardMedia
                 component="img"
                 height="250"
-                image={item.thumbnail}
-                alt={item.title}
+                image={getThumbnail(project.id)}
+                alt={`${project.title} thumbnail`}
                 sx={{
                   objectFit: "cover",
                   maxWidth: 300,
@@ -147,9 +171,10 @@ const PortfolioGrid = ({ items }) => {
                   width: 300,
                 }}
               />
+
               <Overlay className="overlay">
                 <Typography variant="h6" sx={{ fontWeight: 200 }}>
-                  {item.title}
+                  {project.title}
                 </Typography>
                 <Typography variant="body2">Click to Preview</Typography>
               </Overlay>
@@ -159,7 +184,7 @@ const PortfolioGrid = ({ items }) => {
       </Grid>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={closeModal}
         closeAfterTransition
         BackdropProps={{
           timeout: 500,
@@ -168,11 +193,11 @@ const PortfolioGrid = ({ items }) => {
       >
         <Fade in={open}>
           <ModalBox>
-            {selectedItem && (
+            {selectedProject && (
               <>
                 <Box sx={{ textAlign: "right" }}>
                   <Button
-                    onClick={handleClose}
+                    onClick={closeModal}
                     sx={{ color: theme.palette.text.secondary }}
                   >
                     Close
@@ -183,10 +208,10 @@ const PortfolioGrid = ({ items }) => {
                   variant="h4"
                   sx={{ fontWeight: 200, margin: "auto" }}
                 >
-                  {selectedItem.title}
+                  {selectedProject.title}
                 </Typography>
 
-                {selectedItem.iframeLink ? (
+                {selectedProject.iframeLink ? (
                   <Box
                     sx={{
                       width: {
@@ -198,6 +223,9 @@ const PortfolioGrid = ({ items }) => {
                         md: 5,
                         lg: 5,
                       },
+                      py: 4,
+                      backgroundColor: theme.palette.background.default,
+                      borderRadius: "5px",
                     }}
                   >
                     <Box
@@ -233,7 +261,6 @@ const PortfolioGrid = ({ items }) => {
                         title="Inline Frame Example"
                         style={{
                           //   opacity: isModalLoading ? 0 : 1,
-                          overflow: "hidden",
                           margin: "auto",
                           position: "absolute",
                           border: "none",
@@ -241,7 +268,7 @@ const PortfolioGrid = ({ items }) => {
                             iframeDisplay === "laptop"
                               ? "3% 3% 0 0 "
                               : iframeDisplay === "tablet"
-                              ? "3% 3% 0 0 "
+                              ? 0
                               : 0,
                           left: "50%",
                           transform: "translateX(-50%)",
@@ -250,20 +277,20 @@ const PortfolioGrid = ({ items }) => {
                             iframeDisplay === "laptop"
                               ? `7px`
                               : iframeDisplay === "tablet"
-                              ? `50px`
+                              ? `6%`
                               : `11%`,
 
                           height:
                             iframeDisplay === "laptop"
                               ? `93%`
                               : iframeDisplay === "tablet"
-                              ? `50%`
+                              ? `78.4%`
                               : `62%`,
                           width:
                             iframeDisplay === "laptop"
                               ? `80%`
                               : iframeDisplay === "tablet"
-                              ? `50%`
+                              ? `33.4%`
                               : `18.9%`,
                           zoom: 0.4,
                           transition: "width 0.4s",
@@ -271,9 +298,22 @@ const PortfolioGrid = ({ items }) => {
                         }}
                         // width="100%"
                         // height=""
-                        src={selectedItem.href2}
+                        src={selectedProject.href2}
                       ></iframe>
                     </Box>
+
+                    {selectedProject.notResponsive && (
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          pt: 2,
+                          color: theme.palette.text.primary,
+                          textAlign: "center",
+                        }}
+                      >
+                        Viewed best on desktop
+                      </Typography>
+                    )}
 
                     <FormControl
                       component="fieldset"
@@ -281,7 +321,11 @@ const PortfolioGrid = ({ items }) => {
                         mt: 3,
                         //mb: 2,
                         pl: 1.5,
-                        display: "flex",
+                        display:
+                          selectedProject.notResponsive === true
+                            ? "none"
+                            : "flex",
+
                         justifyContent: "center",
                         py: 0,
 
@@ -291,11 +335,11 @@ const PortfolioGrid = ({ items }) => {
                       <Typography
                         variant="subtitle2"
                         sx={{
-                          color: "rgba(255,255,255,0.6)",
+                          color: theme.palette.text.primary,
                           alignSelf: "center",
                         }}
                       >
-                        Preview display
+                        Preview size
                       </Typography>
                       <RadioGroup
                         row
@@ -330,7 +374,11 @@ const PortfolioGrid = ({ items }) => {
                                   color: theme.palette.text.primary,
                                 }}
                               />
-                              Laptop
+                              <Typography
+                                sx={{ display: { xs: "none", sm: "flex" } }}
+                              >
+                                Laptop
+                              </Typography>
                             </Box>
                           }
                           sx={{
@@ -372,7 +420,11 @@ const PortfolioGrid = ({ items }) => {
                                   color: theme.palette.text.primary,
                                 }}
                               />
-                              Tablet
+                              <Typography
+                                sx={{ display: { xs: "none", sm: "flex" } }}
+                              >
+                                Tablet
+                              </Typography>
                             </Box>
                           }
                           sx={{
@@ -416,11 +468,14 @@ const PortfolioGrid = ({ items }) => {
                                   color: theme.palette.text.primary,
                                 }}
                               />
-                              Mobile
+                              <Typography
+                                sx={{ display: { xs: "none", sm: "flex" } }}
+                              >
+                                Mobile
+                              </Typography>
                             </Box>
                           }
                           sx={{
-                            //color: "rgba(255,255,255,0.7)",
                             color:
                               iframeSize === "phone"
                                 ? "#cf5600"
@@ -434,25 +489,114 @@ const PortfolioGrid = ({ items }) => {
                         />
                       </RadioGroup>
                     </FormControl>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        gap: 2,
+                        mt: 2,
+                        justifyContent: "center",
+                      }}
+                    >
+                      {selectedProject.href2 && (
+                        <NavButton
+                          onClick={() => {
+                            window.open(selectedProject.href2);
+                          }}
+                          startIcon={<LaunchIcon />}
+                          sx={{
+                            backgroundColor: "lightblue",
+                            color: "white",
+                            textTransform: "uppercase",
+                            fontWeight: 200,
+                            "&:hover": { backgroundColor: "skyblue" },
+                          }}
+                        >
+                          Launch website
+                        </NavButton>
+                      )}
+                    </Box>
                   </Box>
                 ) : (
                   <Box
-                    component="img"
-                    src={selectedItem.largesrc}
-                    alt={selectedItem.title}
                     sx={{
+                      display: "flex",
+                      alignItems: "flex",
+                      justifyContent: "center",
                       width: "100%",
-                      maxHeight: 400,
-                      objectFit: "contain",
-                      borderRadius: theme.shape.borderRadius,
+                      px: {
+                        xs: 1,
+                        md: 5,
+                        lg: 5,
+                      },
+                      height: "400px",
+                      margin: "auto",
+                      maxHeight: 500,
                     }}
-                  />
+                  >
+                    <Swiper
+                      modules={[Autoplay, Navigation, Pagination, EffectFade]}
+                      // loop={true}
+                      // effect={"fade"}
+                      // fadeEffect={{ crossFade: true }}
+                      spaceBetween={0}
+                      slidesPerView={1}
+                      centeredSlides={true}
+                      autoplay={{
+                        delay: 2500,
+                        disableOnInteraction: false,
+                      }}
+                      navigation={false}
+                      pagination={{ clickable: true, dynamicBullets: true }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      {fullSizeImages.length > 0 ? (
+                        fullSizeImages.map((img, index) => (
+                          <SwiperSlide>
+                            <img
+                              loading="lazy"
+                              key={index}
+                              src={img}
+                              alt={`${selectedProject.title} image ${
+                                index + 1
+                              }`}
+                              style={{
+                                width: "100%",
+                                margin: "auto",
+                                height: "90%",
+                                borderRadius: "8px",
+                                objectFit: "contain",
+                              }}
+                            />
+                          </SwiperSlide>
+                        ))
+                      ) : (
+                        <SwiperSlide>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              width: "100%",
+                              height: "100%",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <p>No images available</p>
+                          </Box>
+                        </SwiperSlide>
+                      )}
+                    </Swiper>
+                  </Box>
                 )}
+
                 <Typography
                   variant="body1"
                   sx={{ color: theme.palette.text.secondary }}
                 >
-                  {selectedItem.description}
+                  {selectedProject.description}
                 </Typography>
 
                 <Box
@@ -463,13 +607,11 @@ const PortfolioGrid = ({ items }) => {
                     justifyContent: "center",
                   }}
                 >
-                  {selectedItem.href && (
+                  {selectedProject.id && (
                     <NavButton
                       onClick={() => {
-                        navigate(selectedItem.href);
+                        navigate(`/projects/${selectedProject.id}`);
                       }}
-                      //   variant="outlined"
-                      //   href={selectedItem.href}
                       sx={{
                         borderColor: theme.palette.primary.main,
                         color: theme.palette.primary.main,
@@ -480,13 +622,13 @@ const PortfolioGrid = ({ items }) => {
                       View Project
                     </NavButton>
                   )}
-                  {selectedItem.href2 && (
+                  {selectedProject.href2 && (
                     <NavButton
                       onClick={() => {
-                        window.open(selectedItem.href2);
+                        window.open(selectedProject.href2);
                       }}
                       //   variant="contained"
-                      //   href={selectedItem.href2}
+                      //   href={selectedProject.href2}
                       //   target="_blank"
                       //   rel="noopener noreferrer"
                       startIcon={<LaunchIcon />}

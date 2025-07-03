@@ -1,0 +1,52 @@
+[
+  {
+    "id": "meditation-timer",
+    "href": "/projects/meditation-timer",
+    "href2": "https://thetawave.netlify.app",
+    "iframeLink": "https://thetawave.netlify.app",
+    "thumbnail": "src/assets/thumbs/lotus-responsive.jpg",
+    "technologies": ["react", "mui", "html", "css", "js", "firebase2"],
+    "title": "Meditation Timer",
+    "description": "A comprehensive meditation timer built in React, where users can create a custom soundscape, store and retrieve session data (firestore), view their history, see session data on weekly or monthly charts, earn badges for reaching milestones and more",
+    "type": "Responsive Web App",
+    "text1": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
+    "text2": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page..."
+  },
+  {
+    "id": "nc-news",
+    "href": "/projects/nc-news",
+    "href2": "https://gjonesncnews.netlify.app",
+    "iframeLink": "https://gjonesncnews.netlify.app",
+    "thumbnail": "src/assets/thumbs/nc-news.png",
+    "technologies": ["react", "mui", "html", "css", "js", "psql"],
+
+    "title": "NC News",
+    "description": "Description for item 1"
+  },
+  {
+    "id": "occupy",
+    "href": "/projects/occupy",
+    "href2": "https://www.gethsworld.com/occupy",
+    "iframeLink": "https://www.gethsworld.com/occupy",
+    "thumbnail": "src/assets/thumbs/occupy.jpg",
+    "title": "Occupy Sound",
+    "description": "Description for item 2"
+  },
+  {
+    "id": "globe",
+    "href": "/projects/globe",
+    "href2": "https://www.gethsworld.com/datavis/",
+    "iframeLink": "https://www.gethsworld.com/datavis/",
+    "thumbnail": "src/assets/thumbs/globe.jpg",
+    "title": "Item 2",
+    "description": "Description for item 2",
+    "notResponsive": true
+  },
+  {
+    "id": "sustainable-world",
+    "href": "/projects/sustainable-world",
+    "thumbnail": "src/assets/thumbs/occupy.jpg",
+    "title": "Sustainable world",
+    "description": "Description for item 1"
+  }
+]

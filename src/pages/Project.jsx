@@ -1,55 +1,42 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import { TypeAnimation } from "react-type-animation";
-import { useState } from "react";
+import { Box, Typography, useTheme } from "@mui/material";
 
-import LaptopIcon from "@mui/icons-material/Laptop";
-import TabletMacIcon from "@mui/icons-material/TabletMac";
-import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import projects from "../data/projects.json";
+import { loadProjectImages, getThumbnail } from "../utils/loadImages";
 
-import LaunchIcon from "@mui/icons-material/Launch";
-import NavButton from "../components/NavButton";
-
-import "react-slideshow-image/dist/styles.css";
-import { Fade, Zoom } from "react-slideshow-image";
-const previews = import.meta.glob("../assets/previews/*.{png,jpg,jpeg,svg}", {
+const technologyIcons = import.meta.glob("../assets/technologies/*.png", {
   eager: true,
+  import: "default",
 });
+
 const Project = () => {
-  const { project_id } = useParams();
-
+  const { projectId } = useParams();
+  const [project, setProject] = useState(null);
+  const [fullSizeImages, setFullSizeImages] = useState([]);
   const navigate = useNavigate();
-  const [iframeSize, setIframeSize] = useState("100%");
-  const [siteToDisplay, setSiteToDisplay] = useState(
-    "https://gjonesncnews.netlify.app/"
-  );
-
   const theme = useTheme();
 
-  const handleIframeSizeChange = (event) => {
-    setIframeSize(event.target.value);
-  };
+  useEffect(() => {
+    const loadProject = async () => {
+      const selectedProject = projects.find((p) => p.id === projectId);
+      if (selectedProject) {
+        const images = await loadProjectImages(projectId);
+        setFullSizeImages(images);
+        setProject(selectedProject);
+      }
+    };
+    loadProject();
+  }, [projectId]);
 
-  const images = [
-    previews["../assets/previews/lotus-responsive.png"]?.default,
-    previews["../assets/previews/lotus-responsive.png"]?.default,
-    previews["../assets/previews/lotus-responsive.png"]?.default,
-  ];
+  if (!project) {
+    return <div>Loading...{projectId}</div>;
+  }
 
   return (
     <Box className="project" sx={{ mt: "80px" }}>
-      {/* <Typography
+      <Typography
         className="fade up"
         sx={{
           fontWeight: 700,
@@ -71,267 +58,76 @@ const Project = () => {
         }}
         variant="h1"
       >
-        {project_id}
-      </Typography> */}
+        {project.title}
+      </Typography>
 
-      <Box className="fade up delay1" sx={{ width: "80%", margin: "auto" }}>
-        <Fade
-          onChange={function noRefCheck() {}}
-          onStartChange={function noRefCheck() {}}
-          indicators={true}
-        >
-          {images.map((each, index) => (
-            <div key={index} style={{ width: "100%" }}>
-              <img
-                style={{
-                  objectFit: "cover",
-                  width: "70vw",
-                  maxWidth: "600px",
-                  display: "block",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  //   animationName: "fadeInUp",
-                  //   animationDuration: "2s",
-                  //   animationIterationCount: 1,
-                  //   animationFillMode: "forwards",
-                  //   opacity: 0,
-                }}
-                alt="Slide Image"
-                src={each}
-              />
-            </div>
-          ))}
-        </Fade>
-
-        <Zoom scale={0.7} indicators={true}>
-          {images.map((each, index) => (
-            <div key={index} style={{ width: "100%" }}>
-              <img
-                style={{ objectFit: "cover", width: "100%" }}
-                alt="Slide Image"
-                src={each}
-              />
-            </div>
-          ))}
-        </Zoom>
-      </Box>
-      <Button
-        onClick={() => {
-          setSiteToDisplay("https://thetawave.netlify.app/");
-        }}
-      >
-        Meditation
-      </Button>
-
-      <Button
-        onClick={() => {
-          setSiteToDisplay("https://www.gethsworld.com/occupy/");
-        }}
-      >
-        Occupy
-      </Button>
-
-      <Box
+      <Typography
+        className="fade up delay1"
         sx={{
-          width: { xs: "100%", sm: "80%", md: "70%", lg: "60%" },
-          margin: "auto",
+          fontSize: "clamp(1.2rem, 3vw, 1.75rem)",
+          fontWeight: 300,
+          mt: "0.5em",
+          letterSpacing: "-1px",
+          animationName: "fadeInUp",
+          animationDuration: "1.5s",
+
+          animationIterationCount: 1,
+          animationFillMode: "forwards",
+          opacity: 0,
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-            position: "relative",
-            height: 0,
-            pb: "56.25%",
+        {project.type}
+      </Typography>
+      <Box
+        className="fade delay2"
+        sx={{
+          display: "flex",
+          width: "fit-content",
+          width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" },
+          p: 3,
+          //flexWrap: "wrap",
+          margin: "auto",
+          justifyContent: "center",
+          transform: {
+            xs: "scale(0.6)",
+            sm: "scale(0.7)",
+            md: "scale(0.8)",
+            lg: "scale(0.9)",
+            xl: "scale(1)",
+          },
+        }}
+      >
+        {project.technologies &&
+          project.technologies.map((icon) => {
+            const path = `../assets/technologies/${icon}.png`;
+            const imgSrc = technologyIcons[path];
+
+            return (
+              <img
+                key={icon}
+                src={imgSrc}
+                alt={icon}
+                style={{
+                  width: "50px",
+                  height: "50px",
+                }}
+              />
+            );
+          })}
+      </Box>
+      <Box
+        className="fade delay2"
+        sx={{ width: "100%", margin: "auto", maxWidth: "800px" }}
+      >
+        <img
+          src={fullSizeImages[0]}
+          width="100%"
+          height="100%"
+          style={{
+            objectFit: "contain",
+            maxHeight: "500px",
           }}
-        >
-          <iframe
-            id="inlineFrameExample"
-            title="Inline Frame Example"
-            style={{
-              margin: "auto",
-              position: "absolute",
-
-              left: "50%",
-              transform: "translateX(-50%)",
-              top: 0,
-              height: "100%",
-              width: iframeSize,
-              zoom: 0.5,
-              transition: "width 1s",
-            }}
-            // width="100%"
-            // height=""
-            src={siteToDisplay}
-          ></iframe>
-        </Box>
-
-        {/* {iframeSize === "100%" ? (
-          <Button
-            onClick={() => {
-              setIframeSize("33%");
-            }}
-          >
-            Show mobile
-          </Button>
-        ) : (
-          <Button
-            onClick={() => {
-              setIframeSize("100%");
-            }}
-          >
-            Show desktop
-          </Button>
-        )} */}
-
-        <FormControl
-          component="fieldset"
-          sx={{
-            mt: 3,
-            mb: 2,
-            pl: 1.5,
-            display: "flex",
-            justifyContent: "center",
-            py: 0,
-
-            borderRadius: "10px",
-          }}
-        >
-          <Typography
-            variant="subtitle2"
-            sx={{ color: "rgba(255,255,255,0.6)", alignSelf: "center" }}
-          >
-            Preview display
-          </Typography>
-          <RadioGroup
-            row
-            value={iframeSize}
-            onChange={handleIframeSizeChange}
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
-            <FormControlLabel
-              value="100%"
-              control={
-                <Radio
-                  sx={{
-                    color: theme.palette.text.secondary,
-                    "&.Mui-checked": {
-                      color: "#cf5600",
-                    },
-                  }}
-                />
-              }
-              label={
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: theme.palette.text.primary,
-                  }}
-                >
-                  <LaptopIcon
-                    sx={{ mr: 0.5, color: theme.palette.text.primary }}
-                  />
-                  Laptop
-                </Box>
-              }
-              sx={{
-                color:
-                  iframeSize === "100%" ? "#cf5600" : "rgba(255,255,255,0.7)",
-                padding: "10px",
-                "& .MuiFormControlLabel-label": {
-                  fontWeight: 400,
-                  fontSize: { xs: "0.8rem", sm: "0.9rem" },
-                },
-              }}
-            />
-            <FormControlLabel
-              value="66%"
-              control={
-                <Radio
-                  sx={{
-                    color: "white",
-                    "&.Mui-checked": {
-                      color: "#cf5600",
-                    },
-                  }}
-                />
-              }
-              label={
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: theme.palette.text.primary,
-                  }}
-                >
-                  <TabletMacIcon
-                    sx={{ mr: 0.5, color: theme.palette.text.primary }}
-                  />
-                  Tablet
-                </Box>
-              }
-              sx={{
-                color:
-                  iframeSize === "66%" ? "#cf5600" : "rgba(255,255,255,0.7)",
-                padding: "10px",
-                "& .MuiFormControlLabel-label": {
-                  fontWeight: 400,
-                  fontSize: { xs: "0.8rem", sm: "0.9rem" },
-                },
-              }}
-            />
-            <FormControlLabel
-              value="33%"
-              control={
-                <Radio
-                  sx={{
-                    color: "white",
-
-                    "&.Mui-checked": {
-                      color: "#cf5600",
-                    },
-                  }}
-                />
-              }
-              label={
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: theme.palette.text.primary,
-                  }}
-                >
-                  <SmartphoneIcon
-                    sx={{ mr: 0.5, color: theme.palette.text.primary }}
-                  />
-                  Mobile
-                </Box>
-              }
-              sx={{
-                //color: "rgba(255,255,255,0.7)",
-                color:
-                  iframeSize === "33%" ? "#cf5600" : "rgba(255,255,255,0.7)",
-                padding: "10px",
-                "& .MuiFormControlLabel-label": {
-                  fontWeight: 400,
-                  fontSize: { xs: "0.8rem", sm: "0.9rem" },
-                },
-              }}
-            />
-          </RadioGroup>
-        </FormControl>
-        <NavButton
-          startIcon={<LaunchIcon />}
-          onClick={() => {
-            window.open(siteToDisplay);
-          }}
-        >
-          Visit Site
-        </NavButton>
+        />
       </Box>
     </Box>
   );
