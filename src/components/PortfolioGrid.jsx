@@ -47,6 +47,11 @@ import "swiper/css/effect-fade";
 
 import { getThumbnail, loadProjectImages } from "../utils/loadImages";
 
+// Import iframe container image files
+import laptopImage from "../assets/laptop.png";
+import tabletImage from "../assets/tablet.png";
+import phoneImage from "../assets/phone.png";
+
 const StyledCard = styled(Card)(({ theme }) => ({
   position: "relative",
   height: 250,
@@ -289,13 +294,12 @@ const PortfolioGrid = ({ projects }) => {
                         position: "relative",
                         height: 0,
                         pb: "56.25%",
-
                         backgroundImage:
                           iframeDisplay === "laptop"
-                            ? `url("src/assets/laptop.png")`
+                            ? `url(${laptopImage})`
                             : iframeDisplay === "tablet"
-                            ? `url("src/assets/tablet.png")`
-                            : `url("src/assets/phone.png")`,
+                            ? `url(${tabletImage})`
+                            : `url(${phoneImage})`,
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "contain",
                         backgroundPosition: "center",
