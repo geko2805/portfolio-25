@@ -28,6 +28,8 @@ import ReactIcon from "../assets/technologies/react.png";
 import ReactNativeIcon from "../assets/technologies/react-native.png";
 import PsIcon from "../assets/technologies/ps.png";
 
+import CloseIcon from "@mui/icons-material/Close";
+
 // import Swiper core and required modules
 import {
   Autoplay,
@@ -105,18 +107,19 @@ const ModalBox = styled(Box)(({ theme }) => ({
   transform: "translate(-50%, -50%)",
   width: "90%",
   maxWidth: 800,
-  background: theme.palette.background.default,
+  background: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[5],
   padding: theme.spacing(4),
   outline: "none",
-  maxHeight: "90vh",
+  maxHeight: "87.5%",
   overflowY: "auto",
   display: "flex",
+  zIndex: 10001,
   flexDirection: "column",
   gap: theme.spacing(2),
   [theme.breakpoints.down("sm")]: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0),
   },
 }));
 
@@ -131,6 +134,40 @@ const PortfolioGrid = ({ projects }) => {
   const [isModalLoading, setIsModalLoading] = useState(true);
 
   const theme = useTheme();
+
+  //scaling for iframe
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(...args), delay);
+    };
+  };
+  const [scale, setScale] = useState(0.2);
+
+  const updateScale = useCallback(() => {
+    const vw = window.innerWidth;
+    const minScale = 0.2;
+    const maxScale = 0.4;
+    const minWidth = 360; // Mobile-first starting point
+    const maxWidth = 900; // Max scale at 900px
+    // Linear interpolation: scale = minScale + (vw - minWidth) / (maxWidth - minWidth) * (maxScale - minScale)
+    const newScale = Math.min(
+      maxScale,
+      Math.max(
+        minScale,
+        0.2 + ((vw - minWidth) / (maxWidth - minWidth)) * (maxScale - minScale)
+      )
+    );
+    setScale(newScale);
+  }, []);
+
+  useEffect(() => {
+    const debouncedUpdateScale = debounce(updateScale, 100); // 100ms delay
+    updateScale(); // Initial call
+    window.addEventListener("resize", debouncedUpdateScale);
+    return () => window.removeEventListener("resize", debouncedUpdateScale);
+  }, [updateScale]);
 
   const openModal = async (projectId) => {
     const project = projects.find((p) => p.id === projectId);
@@ -255,10 +292,17 @@ const PortfolioGrid = ({ projects }) => {
           <ModalBox>
             {selectedProject && (
               <>
-                <Box sx={{ textAlign: "right" }}>
+                <Box
+                  sx={{
+                    textAlign: "right",
+                    pt: { xs: 2, sm: 0 },
+                    pr: { xs: 2, sm: 0 },
+                  }}
+                >
                   <Button
                     onClick={closeModal}
                     sx={{ color: theme.palette.text.secondary }}
+                    endIcon={<CloseIcon />}
                   >
                     Close
                   </Button>
@@ -266,7 +310,7 @@ const PortfolioGrid = ({ projects }) => {
 
                 <Typography
                   variant="h4"
-                  sx={{ fontWeight: 200, margin: "auto" }}
+                  sx={{ fontWeight: 200, margin: "auto", p: 0, mt: 0 }}
                 >
                   {selectedProject.title}
                 </Typography>
@@ -279,12 +323,18 @@ const PortfolioGrid = ({ projects }) => {
                       },
                       margin: "auto",
                       px: {
-                        xs: 1,
+                        xs: 3,
+                        sm: 4,
                         md: 5,
                         lg: 5,
                       },
-                      py: 4,
-                      backgroundColor: theme.palette.background.paper,
+                      py: {
+                        xs: 3,
+                        sm: 3,
+                        md: 4,
+                        lg: 4,
+                      },
+                      backgroundColor: theme.palette.background.default,
                       borderRadius: "5px",
                     }}
                   >
@@ -315,14 +365,31 @@ const PortfolioGrid = ({ projects }) => {
                         </Box>
                       )} */}
 
-                      <iframe
-                        scrolling="no"
+                      <Box
+                        component="iframe"
+                        // scrolling="no"
                         onLoad={() => setIsModalLoading(false)}
                         className="iframe-preview"
                         id="inlineFrameExample"
                         title="Inline Frame Example"
-                        style={{
-                          // opacity: isModalLoading ? 0 : 1,
+                        sx={{
+                          // zoom - not supported by all browsers
+                          // height:
+                          //   iframeDisplay === "laptop"
+                          //     ? `93%`
+                          //     : iframeDisplay === "tablet"
+                          //     ? `78.4%`
+                          //     : `70.1%`,
+                          // width:
+                          //   iframeDisplay === "laptop"
+                          //     ? `80%`
+                          //     : iframeDisplay === "tablet"
+                          //     ? `33.4%`
+                          //     : `22.2%`,
+                          // zoom: { xs: 0.2, sm: 0.3, md: 0.4 },
+                          // transition: "width 0.4s",
+                          // scrollbarWidth: "none",
+
                           margin: "auto",
                           position: "absolute",
                           border: "none",
@@ -331,37 +398,48 @@ const PortfolioGrid = ({ projects }) => {
                               ? "3% 3% 0 0 "
                               : iframeDisplay === "tablet"
                               ? 0
-                              : "1%",
-                          left: iframeDisplay === "phone" ? `50.13162%` : "50%",
-                          transform: "translateX(-50%)",
+                              : "1.5%",
+                          left: iframeDisplay === "phone" ? `50.08%` : "50%",
                           top: 0,
                           marginTop:
                             iframeDisplay === "laptop"
-                              ? `7px`
+                              ? "0.75%"
                               : iframeDisplay === "tablet"
-                              ? `6%`
-                              : `8.27%`,
-
-                          height:
-                            iframeDisplay === "laptop"
-                              ? `93%`
-                              : iframeDisplay === "tablet"
-                              ? `78.4%`
-                              : `70.1%`,
+                              ? "6%"
+                              : "8.27%",
                           width:
                             iframeDisplay === "laptop"
-                              ? `80%`
+                              ? //  {
+                                //     xs: "calc(80%/0.2)",
+                                //     sm: "calc(80%/0.3)",
+                                //     md: "calc(80%/0.4)",
+                                //   }
+                                `calc(79.5% / ${scale})` //divide height and width by same valuee as transform scale
                               : iframeDisplay === "tablet"
-                              ? `33.4%`
-                              : `22.2%`,
-                          zoom: 0.4,
-                          transition: "width 0.4s",
-                          scrollbarWidth: "none",
+                              ? `calc(33.4% / ${scale})`
+                              : `calc(22.5% / ${scale})`,
+                          height:
+                            iframeDisplay === "laptop"
+                              ? // {
+                                //     xs: "calc(93%/0.2)",
+                                //     sm: "calc(93%/0.3)",
+                                //     md: "calc(93%/0.4)",
+                                //   }
+                                `calc(91.5% / ${scale})`
+                              : iframeDisplay === "tablet"
+                              ? `calc(78.4% / ${scale})`
+                              : `calc(70.5% / ${scale})`,
+                          // transform: {
+                          //   xs: `translateX(-50%) scale(0.2)`,
+                          //   sm: `translateX(-50%) scale(0.3)`,
+                          //   md: `translateX(-50%) scale(0.4)`,
+                          // },
+                          transform: `translateX(-50%) scale(${scale})`,
+                          transformOrigin: "center top",
+                          //transition: "width 0.4s, height 0.4s, transform 0.4s",
                         }}
-                        // width="100%"
-                        // height=""
                         src={selectedProject.iframeLink}
-                      ></iframe>
+                      ></Box>
                     </Box>
 
                     {selectedProject.notResponsive && (
@@ -407,7 +485,10 @@ const PortfolioGrid = ({ projects }) => {
                         row
                         value={iframeDisplay}
                         onChange={handleIframeSizeChange}
-                        sx={{ display: "flex", justifyContent: "center" }}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
                       >
                         <FormControlLabel
                           value="laptop"
@@ -428,6 +509,7 @@ const PortfolioGrid = ({ projects }) => {
                                 alignItems: "center",
                                 justifyContent: "center",
                                 color: theme.palette.text.primary,
+                                padding: "0px",
                               }}
                             >
                               <LaptopIcon
@@ -444,11 +526,12 @@ const PortfolioGrid = ({ projects }) => {
                             </Box>
                           }
                           sx={{
-                            color:
-                              iframeSize === "laptop"
-                                ? "#cf5600"
-                                : "rgba(255,255,255,0.7)",
-                            padding: "10px",
+                            padding: {
+                              xs: "5px",
+                              sm: "5px",
+                              md: "10px",
+                              lg: "15px",
+                            },
                             "& .MuiFormControlLabel-label": {
                               fontWeight: 400,
                               fontSize: { xs: "0.8rem", sm: "0.9rem" },
@@ -474,6 +557,7 @@ const PortfolioGrid = ({ projects }) => {
                                 alignItems: "center",
                                 justifyContent: "center",
                                 color: theme.palette.text.primary,
+                                padding: "0px",
                               }}
                             >
                               <TabletMacIcon
@@ -490,11 +574,12 @@ const PortfolioGrid = ({ projects }) => {
                             </Box>
                           }
                           sx={{
-                            color:
-                              iframeSize === "tablet"
-                                ? "#cf5600"
-                                : "rgba(255,255,255,0.7)",
-                            padding: "10px",
+                            padding: {
+                              xs: "5px",
+                              sm: "5px",
+                              md: "10px",
+                              lg: "15px",
+                            },
                             "& .MuiFormControlLabel-label": {
                               fontWeight: 400,
                               fontSize: { xs: "0.8rem", sm: "0.9rem" },
@@ -522,6 +607,7 @@ const PortfolioGrid = ({ projects }) => {
                                 alignItems: "center",
                                 justifyContent: "center",
                                 color: theme.palette.text.primary,
+                                padding: "0px",
                               }}
                             >
                               <SmartphoneIcon
@@ -538,11 +624,12 @@ const PortfolioGrid = ({ projects }) => {
                             </Box>
                           }
                           sx={{
-                            color:
-                              iframeSize === "phone"
-                                ? "#cf5600"
-                                : "rgba(255,255,255,0.7)",
-                            padding: "10px",
+                            padding: {
+                              xs: "5px",
+                              sm: "5px",
+                              md: "10px",
+                              lg: "15px",
+                            },
                             "& .MuiFormControlLabel-label": {
                               fontWeight: 400,
                               fontSize: { xs: "0.8rem", sm: "0.9rem" },
@@ -583,15 +670,15 @@ const PortfolioGrid = ({ projects }) => {
                   <Box
                     sx={{
                       display: "flex",
-                      alignItems: "flex",
+                      alignItems: "center",
                       justifyContent: "center",
                       width: "100%",
                       px: {
-                        xs: 1,
+                        xs: 0,
                         md: 5,
                         lg: 5,
                       },
-                      height: "400px",
+                      height: "300px",
                       margin: "auto",
                       maxHeight: 500,
                     }}
@@ -656,7 +743,10 @@ const PortfolioGrid = ({ projects }) => {
 
                 <Typography
                   variant="body1"
-                  sx={{ color: theme.palette.text.secondary }}
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    px: { xs: 2, sm: 0 },
+                  }}
                 >
                   {selectedProject.description}
                 </Typography>

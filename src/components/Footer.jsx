@@ -15,7 +15,7 @@ const Footer = () => {
         bottom: 0,
         left: 0,
         width: "100%",
-        height: "40px",
+        height: "60px",
         p: 2,
         display: "flex",
         alignItems: "center",
@@ -29,6 +29,7 @@ const Footer = () => {
           position: "absolute",
           top: 0,
           left: 0,
+
           height: "100%",
           width: "100%",
           backdropFilter: "blur(5px)",
@@ -44,6 +45,7 @@ const Footer = () => {
             display: "flex",
             alignItems: "center",
             height: "100%",
+            mt: 0.5,
           }}
         >
           <Box
@@ -90,16 +92,12 @@ const Footer = () => {
                 gap: "5px",
                 justifyContent: "center",
                 alignItems: "center",
-
                 borderRadius: "5px",
               }}
             >
               <LinkedInIcon sx={{ color: "#0077b5", fontSize: "16px" }} />{" "}
               LinkedIn
             </Link>
-          </Box>
-
-          <Box sx={{ marginLeft: "auto", mr: 2 }}>
             <Link
               href="https://www.linkedin.com/in/gethin-jones-8b6957a8/"
               target="_blank"
@@ -119,6 +117,28 @@ const Footer = () => {
               />{" "}
               CV
             </Link>
+          </Box>
+
+          <Box sx={{ marginLeft: "auto", mr: 2 }}>
+            {/* <Link
+              href="https://www.linkedin.com/in/gethin-jones-8b6957a8/"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: theme.palette.text.secondary,
+                fontSize: "16px",
+                display: { xs: "flex", sm: "flex" },
+                gap: "5px",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: "5px",
+              }}
+            >
+              <ArticleIcon
+                sx={{ color: theme.palette.text.primary, fontSize: "16px" }}
+              />{" "}
+              CV
+            </Link> */}
           </Box>
         </Box>
       </Box>
