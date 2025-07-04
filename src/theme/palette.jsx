@@ -41,5 +41,6 @@ export const darkPalette = {
   },
   accent: {
     main: "#607d8b",
+    main: "rgba(0,188,207,0.8)",
   },
 };

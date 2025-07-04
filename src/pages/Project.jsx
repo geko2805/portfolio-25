@@ -85,13 +85,14 @@ const Project = () => {
         className="fade up"
         sx={{
           fontWeight: 700,
-          fontSize: "clamp(2.4em, 6vw, 4.0625rem)",
+          fontSize: "clamp(2.4em, 6vw, 3.0625rem)",
           fontFamily: "Inconsolata, monospace",
           animationDelay: "0.5s",
           letterSpacing: "-0.15rem",
           //margin: "0 0 1.5rem",
-          py: "1.5rem",
-          lineHeight: 0.5,
+          p: "1.5rem",
+
+          lineHeight: "2.4rem",
           //   animationName: "fadeInUp",
           //   animationDuration: "2s",
           color: theme.palette.text.main,
@@ -216,17 +217,59 @@ const Project = () => {
       )}
 
       {project.videoLink && (
-        <iframe
-          width="560"
-          height="315"
-          esegdO-L6xw
-          src={`https://www.youtube.com/embed/${project.videoLink}?si=a7_wv5_cLO7LiGb8`}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
+        // <Box
+        //   sx={{
+        //     width: {
+        //       xs: "100%",
+        //     },
+        //     height: "100%",
+        //     margin: "auto",
+        //   }}
+        // >
+        //   <iframe
+        //     width="100%"
+        //     height="56.25%"
+        //     src={`https://www.youtube.com/embed/${project.videoLink}?si=a7_wv5_cLO7LiGb8`}
+        //     title="YouTube video player"
+        //     frameborder="0"
+        //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        //     referrerpolicy="strict-origin-when-cross-origin"
+        //     allowfullscreen
+        //   ></iframe>
+        // </Box>
+
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: "800px",
+            maxHeight: "450px",
+
+            position: "relative",
+            height: 0,
+            pb: "min(56.25%,450px)", // 16:9 aspect ratio (9/16 = 0.5625)
+            overflow: "hidden",
+            margin: "auto",
+          }}
+        >
+          <Box
+            component="iframe"
+            title="YouTube Video"
+            src={`https://www.youtube.com/embed/${project.videoLink}?si=a7_wv5_cLO7LiGb8`}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+              transition: "opacity 0.4s",
+            }}
+          />
+        </Box>
       )}
     </Box>
   );

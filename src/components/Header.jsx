@@ -80,6 +80,32 @@ const Header = () => {
             checked={checked}
             onChange={handleToggle}
             aria-label="toggle dark mode switch"
+            // sx={{
+            //   "& .MuiSwitch-switchBase": {
+            //     // Unchecked state
+            //     color: "#fff", // Thumb color (white)
+            //     "&:hover": {
+            //       backgroundColor: "rgba(0, 0, 0, 0.1)", // Light gray hover effect
+            //     },
+            //   },
+            //   "& .MuiSwitch-switchBase.Mui-checked": {
+            //     // Checked state
+            //     color: theme.palette.primary.main, // Thumb color (white)
+            //     "&:hover": {
+            //       backgroundColor: "rgba(33, 150, 243, 0.2)", // Light blue hover effect
+            //     },
+            //   },
+            //   "& .MuiSwitch-track": {
+            //     // Unchecked track
+            //     backgroundColor: "#757575", // Gray
+            //     opacity: 1,
+            //   },
+            //   "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+            //     // Checked track
+            //     backgroundColor: theme.palette.primary.main, // Blue (e.g., MUI primary blue)
+            //     opacity: 1,
+            //   },
+            // }}
           />
           <DarkModeIcon sx={{ color: theme.palette.text.secondary }} />
         </Box>

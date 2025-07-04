@@ -55,7 +55,7 @@ const Footer = () => {
               flexWrap: "wrap",
               justifyContent: "center",
               alignItems: "center",
-              gap: { xs: 2, sm: 3, md: 4, lg: 5 },
+              gap: { xs: 4, sm: 5 },
               position: "absolute",
               left: "50%",
               transform: "translateX(-50%)",
@@ -77,9 +77,14 @@ const Footer = () => {
               }}
             >
               <GitHubIcon
-                sx={{ color: theme.palette.text.primary, fontSize: "16px" }}
+                sx={{
+                  color: theme.palette.text.primary,
+                  fontSize: { xs: "22px", sm: "20px" },
+                }}
               />{" "}
-              GitHub
+              <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+                GitHub
+              </Typography>
             </Link>
             <Link
               href="https://www.linkedin.com/in/gethin-jones-8b6957a8/"
@@ -95,8 +100,12 @@ const Footer = () => {
                 borderRadius: "5px",
               }}
             >
-              <LinkedInIcon sx={{ color: "#0077b5", fontSize: "16px" }} />{" "}
-              LinkedIn
+              <LinkedInIcon
+                sx={{ color: "#0077b5", fontSize: { xs: "24px", sm: "24px" } }}
+              />{" "}
+              <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+                LinkedIn
+              </Typography>
             </Link>
             <Link
               href="https://www.linkedin.com/in/gethin-jones-8b6957a8/"
@@ -113,9 +122,36 @@ const Footer = () => {
               }}
             >
               <ArticleIcon
-                sx={{ color: theme.palette.text.primary, fontSize: "16px" }}
+                sx={{
+                  color: theme.palette.text.primary,
+                  fontSize: "16px",
+                  display: { xs: "none", sm: "block" },
+                }}
               />{" "}
-              CV
+              <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+                CV
+              </Typography>
+              <Typography
+                sx={{
+                  border: "2px solid",
+                  borderColor: theme.palette.secondary.main,
+                  bgcolor: theme.palette.secondary.main,
+                  color: "#fff",
+                  p: 1,
+                  borderRadius: 50,
+                  width: "22px",
+                  height: "22px",
+                  display: { xs: "flex", sm: "none" },
+                  fontFamily: "Inconsolata, monospace",
+                  fontWeight: "700",
+                  lineHeight: "0.7rem",
+                  fontSize: "0.7rem",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                CV
+              </Typography>
             </Link>
           </Box>
 
