@@ -331,8 +331,8 @@ const PortfolioGrid = ({ projects }) => {
                               ? "3% 3% 0 0 "
                               : iframeDisplay === "tablet"
                               ? 0
-                              : 0,
-                          left: "50%",
+                              : "1%",
+                          left: iframeDisplay === "phone" ? `50.13162%` : "50%",
                           transform: "translateX(-50%)",
                           top: 0,
                           marginTop:
@@ -340,20 +340,20 @@ const PortfolioGrid = ({ projects }) => {
                               ? `7px`
                               : iframeDisplay === "tablet"
                               ? `6%`
-                              : `11%`,
+                              : `8.27%`,
 
                           height:
                             iframeDisplay === "laptop"
                               ? `93%`
                               : iframeDisplay === "tablet"
                               ? `78.4%`
-                              : `62%`,
+                              : `70.1%`,
                           width:
                             iframeDisplay === "laptop"
                               ? `80%`
                               : iframeDisplay === "tablet"
                               ? `33.4%`
-                              : `18.9%`,
+                              : `22.2%`,
                           zoom: 0.4,
                           transition: "width 0.4s",
                           scrollbarWidth: "none",
