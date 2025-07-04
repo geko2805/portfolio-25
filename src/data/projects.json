@@ -1,11 +1,9 @@
 [
   {
     "id": "meditation-timer",
-    "href": "/projects/meditation-timer",
     "href2": "https://thetawave.netlify.app",
     "iframeLink": "https://thetawave.netlify.app",
-    "thumbnail": "src/assets/thumbs/lotus-responsive.jpg",
-    "technologies": ["react", "mui", "html", "css", "js", "firebase2"],
+    "technologies": ["react", "mui", "firebase2", "webgl"],
     "title": "Meditation Timer",
     "description": "A comprehensive meditation timer built in React, where users can create a custom soundscape, store and retrieve session data (firestore), view their history, see session data on weekly or monthly charts, earn badges for reaching milestones and more",
     "type": "Responsive Web App",
@@ -14,39 +12,113 @@
   },
   {
     "id": "nc-news",
-    "href": "/projects/nc-news",
     "href2": "https://gjonesncnews.netlify.app",
     "iframeLink": "https://gjonesncnews.netlify.app",
-    "thumbnail": "src/assets/thumbs/nc-news.png",
-    "technologies": ["react", "mui", "html", "css", "js", "psql"],
-
+    "technologies": ["node", "psql", "react", "mui"],
     "title": "NC News",
-    "description": "Description for item 1"
+    "description": "Description for item 1",
+    "type": "Full-Stack Web App",
+    "text1": "",
+    "text2": ""
   },
   {
-    "id": "occupy",
-    "href": "/projects/occupy",
+    "id": "safespace",
+    "technologies": [
+      "ts",
+      "tamagui",
+      "react-native",
+      "firebase2",
+      "expo",
+      "maplibre"
+    ],
+    "title": "Safe Space Parking",
+    "description": "Safespace Parking helps you easily find parking spaces that meet your needs, providing peace of mind by showing user reviews and ratings indicating if the space is safe, accessible and within your budget.",
+    "type": "React Native Mobile App",
+    "text1": "",
+    "text2": "",
+    "videoLink": "esegdO-L6xw"
+  },
+  {
+    "id": "occupy-sound",
     "href2": "https://www.gethsworld.com/occupy",
     "iframeLink": "https://www.gethsworld.com/occupy",
-    "thumbnail": "src/assets/thumbs/occupy.jpg",
+    "technologies": ["html", "css", "js", "soundcloud"],
     "title": "Occupy Sound",
-    "description": "Description for item 2"
+    "description": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
+    "type": "Responsive Web App",
+    "text1": "",
+    "text2": ""
   },
   {
-    "id": "globe",
-    "href": "/projects/globe",
+    "id": "globe-visualisation",
     "href2": "https://www.gethsworld.com/datavis/",
     "iframeLink": "https://www.gethsworld.com/datavis/",
-    "thumbnail": "src/assets/thumbs/globe.jpg",
-    "title": "Item 2",
+    "title": "Climate Change Visualiser",
+    "technologies": ["html", "css", "js", "d3"],
     "description": "Description for item 2",
-    "notResponsive": true
+    "type": "3D Data Visualisation",
+    "text1": "",
+    "text2": "",
+    "notResponsive": true,
+    "pdf": "DataVisualisation.pdf"
   },
   {
     "id": "sustainable-world",
-    "href": "/projects/sustainable-world",
-    "thumbnail": "src/assets/thumbs/occupy.jpg",
     "title": "Sustainable world",
-    "description": "Description for item 1"
+    "type": "360 Marketing Campaign",
+    "description": "This marketing campaign was part of the Graphics module in my final year of Digital Design at Brunel. The aim of the campaign was to raise awareness on sustainability issues that are affecting our planet. These include pollution, climate change, deforestation and other global issues affecting the ecosystem.",
+    "technologies": ["ps"]
+  },
+
+  {
+    "id": "curtis-valen",
+    "title": "Portfolio site",
+    "type": "Responsive website",
+    "description": "A modern responsive website for up and coming artist Curtis Valentine, featuring a custom expandable grid",
+    "technologies": ["html", "css", "js"],
+    "previewOnly": true
+  },
+  {
+    "id": "scarlett-omalley",
+    "title": "DJ Promo website",
+    "type": "Responsive website",
+    "description": "A bespoke responsive website for DJ Scarlett O'Malley, featureing a lightweight video background",
+    "technologies": ["html", "css", "js"],
+    "href2": "http://www.scarlettomalley.com/",
+    "iframeLink": "http://www.scarlettomalley.com/",
+    "previewOnly": true
+  },
+  {
+    "id": "eat-green",
+    "title": "Cookery App Design",
+    "type": "UI/UX Design",
+    "description": "Vegetarian cooking app design made with Google material design.",
+    "technologies": ["figma", "ps"],
+    "pdf": "appDesign.pdf"
+  },
+  {
+    "id": "16-step-records",
+    "title": "Sixteen Step Records",
+    "type": "Responsive Web App",
+    "description": "Welcome to the underground of London town... Reponsive website featuring custom soundcloud player, shopify and bandcamp powered ecommerce, CSS glitch effects and more! Click link below to see the website in the wild...",
+    "technologies": ["html", "css", "js"],
+    "iframeLink": "https://www.gethsworld.com/ssr/sc3.html"
+  },
+  {
+    "id": "neville-bruton",
+    "title": "Neville Bruton",
+    "type": "Responsive Website",
+    "description": "Bespoke web build for design and project management practice NB Design. Features an introduction animation, a full screen fading slideshow with overlaid logo, custom image galleries, custom animated menu icon and responsive navigation menu.",
+    "technologies": ["html", "css", "js"]
+  },
+  {
+    "id": "tesseract",
+    "title": "Tesseract Recordings",
+    "type": "Responsive Website",
+    "description": "Responsive website for record label Tesseract Recordings. Featuring custom spotify player, releases catalogue artists pages and more!",
+    "technologies": ["html", "css", "js"],
+    "iframeLink": "https://gethsworld.com/tesseract/",
+    "notResponsive": true,
+    "previewOnly": true
   }
 ]

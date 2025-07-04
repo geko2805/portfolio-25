@@ -1,5 +1,5 @@
 // components/PortfolioGrid.jsx
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   Grid,
   Card,
@@ -23,6 +23,9 @@ import { useNavigate } from "react-router-dom";
 import LaptopIcon from "@mui/icons-material/Laptop";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
+
+import ReactIcon from "../assets/technologies/react.png";
+import ReactNativeIcon from "../assets/technologies/react-native.png";
 
 // import Swiper core and required modules
 import {
@@ -50,8 +53,15 @@ const StyledCard = styled(Card)(({ theme }) => ({
   "&:hover .overlay": {
     opacity: 1,
   },
+  "&:hover .projectImg": {
+    transform: "scale(1.05)",
+  },
+  "&:hover .tech": {
+    display: "none",
+  },
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[2],
+  cursor: "pointer",
 }));
 
 const Overlay = styled(Box)(({ theme }) => ({
@@ -70,6 +80,18 @@ const Overlay = styled(Box)(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
+const Technologies = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  background: "transparent",
+  color: "black",
+  display: "flex",
+  justifyContent: "flex-end",
+}));
+
 const ModalBox = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "50%",
@@ -77,7 +99,7 @@ const ModalBox = styled(Box)(({ theme }) => ({
   transform: "translate(-50%, -50%)",
   width: "90%",
   maxWidth: 800,
-  background: theme.palette.background.paper,
+  background: theme.palette.background.default,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[5],
   padding: theme.spacing(4),
@@ -93,15 +115,14 @@ const ModalBox = styled(Box)(({ theme }) => ({
 }));
 
 const PortfolioGrid = ({ projects }) => {
-  const [iframeDisplay, setIframeDisplay] = useState("laptop");
-  const [iframeSize, setIframeSize] = useState("100%");
-  const [isModalLoading, setIsModalLoading] = useState(true);
-
   //modal
   const [open, setOpen] = useState(false);
 
   const [selectedProject, setSelectedProject] = useState(null);
   const [fullSizeImages, setFullSizeImages] = useState([]);
+  const [iframeDisplay, setIframeDisplay] = useState("laptop");
+  const [iframeSize, setIframeSize] = useState("100%");
+  const [isModalLoading, setIsModalLoading] = useState(true);
 
   const theme = useTheme();
 
@@ -116,9 +137,10 @@ const PortfolioGrid = ({ projects }) => {
   };
 
   const closeModal = () => {
-    setSelectedProject(null);
-    setFullSizeImages([]); // Clear images to free memory
     setOpen(false);
+    setFullSizeImages([]); // Clear images to free memory
+    setSelectedProject(null);
+    setIsModalLoading(true);
   };
 
   const handleIframeSizeChange = (event) => {
@@ -160,6 +182,7 @@ const PortfolioGrid = ({ projects }) => {
           >
             <StyledCard onClick={() => openModal(project.id)}>
               <CardMedia
+                className="projectImg"
                 component="img"
                 height="250"
                 image={getThumbnail(project.id)}
@@ -169,12 +192,43 @@ const PortfolioGrid = ({ projects }) => {
                   maxWidth: 300,
                   margin: "auto",
                   width: 300,
+                  // transform: "scale(0.92)",
                 }}
               />
+              <Technologies className="technologies">
+                {project.technologies.includes("react") ? (
+                  <img
+                    className="tech"
+                    style={{ width: "40px", height: "40px", margin: "10px" }}
+                    src={ReactIcon}
+                  />
+                ) : (
+                  ""
+                )}
+                {project.technologies.includes("react-native") ? (
+                  <img
+                    className="tech"
+                    style={{ width: "40px", height: "40px", margin: "10px" }}
+                    src={ReactNativeIcon}
+                  />
+                ) : (
+                  ""
+                )}
+              </Technologies>
 
               <Overlay className="overlay">
                 <Typography variant="h6" sx={{ fontWeight: 200 }}>
                   {project.title}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 200,
+                    fontSize: "1rem",
+                    mb: 1,
+                    fontStyle: "italic",
+                  }}
+                >
+                  {project.type}
                 </Typography>
                 <Typography variant="body2">Click to Preview</Typography>
               </Overlay>
@@ -224,7 +278,7 @@ const PortfolioGrid = ({ projects }) => {
                         lg: 5,
                       },
                       py: 4,
-                      backgroundColor: theme.palette.background.default,
+                      backgroundColor: theme.palette.background.paper,
                       borderRadius: "5px",
                     }}
                   >
@@ -247,11 +301,14 @@ const PortfolioGrid = ({ projects }) => {
                         overflow: "hidden",
                       }}
                     >
-                      {isModalLoading && (
-                        <Box className="iframe-loading-overlay">
+                      {/* {isModalLoading && (
+                        <Box
+                          className="iframe-loading-overlay"
+                          sx={{ zIndex: 30000, color: "red", fontSize: "2rem" }}
+                        >
                           Loading preview...
                         </Box>
-                      )}
+                      )} */}
 
                       <iframe
                         scrolling="no"
@@ -260,7 +317,7 @@ const PortfolioGrid = ({ projects }) => {
                         id="inlineFrameExample"
                         title="Inline Frame Example"
                         style={{
-                          //   opacity: isModalLoading ? 0 : 1,
+                          // opacity: isModalLoading ? 0 : 1,
                           margin: "auto",
                           position: "absolute",
                           border: "none",
@@ -298,7 +355,7 @@ const PortfolioGrid = ({ projects }) => {
                         }}
                         // width="100%"
                         // height=""
-                        src={selectedProject.href2}
+                        src={selectedProject.iframeLink}
                       ></iframe>
                     </Box>
 
@@ -607,7 +664,9 @@ const PortfolioGrid = ({ projects }) => {
                     justifyContent: "center",
                   }}
                 >
-                  {selectedProject.id && (
+                  {selectedProject.previewOnly ? (
+                    ""
+                  ) : (
                     <NavButton
                       onClick={() => {
                         navigate(`/projects/${selectedProject.id}`);

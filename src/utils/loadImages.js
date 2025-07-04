@@ -1,3 +1,5 @@
+import projects from "../data/projects.json";
+
 // Load all thumbnails eagerly
 const thumbs = import.meta.glob("/src/assets/thumbs/*.{png,jpg,jpeg,svg}", {
   eager: true,
@@ -12,6 +14,12 @@ const fullSizeImagesGlob = import.meta.glob(
     import: "default",
   }
 );
+
+//Load pdfs
+const pdfsGlob = import.meta.glob("/src/assets/pdfs/*.pdf", {
+  eager: false,
+  import: "default",
+});
 
 // Function to dynamically load full-size images for a specific project
 export const loadProjectImages = async (projectId) => {
@@ -49,4 +57,26 @@ export const getThumbnail = (projectId) => {
     path.includes(projectId)
   );
   return thumbs[thumbPath] || null;
+};
+
+export const getProjectPdf = async (projectId) => {
+  const project = projects.find((p) => p.id === projectId);
+  if (!project || !project.pdf) {
+    console.warn(`No PDF found for project: ${projectId}`);
+    return null;
+  }
+  const pdfPath = Object.keys(pdfsGlob).find((path) =>
+    path.includes(`${project.pdf}`)
+  );
+  if (!pdfPath) {
+    console.warn(`PDF file not found: ${project.pdf}`);
+    return null;
+  }
+  try {
+    const pdf = await pdfsGlob[pdfPath]();
+    return pdf;
+  } catch (error) {
+    console.error(`Error loading PDF for project ${projectId}:`, error);
+    return null;
+  }
 };
