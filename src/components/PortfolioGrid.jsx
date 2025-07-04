@@ -26,6 +26,7 @@ import SmartphoneIcon from "@mui/icons-material/Smartphone";
 
 import ReactIcon from "../assets/technologies/react.png";
 import ReactNativeIcon from "../assets/technologies/react-native.png";
+import PsIcon from "../assets/technologies/ps.png";
 
 // import Swiper core and required modules
 import {

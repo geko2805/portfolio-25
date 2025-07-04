@@ -50,6 +50,32 @@
     "text2": ""
   },
   {
+    "id": "ready-to-work",
+    "technologies": [
+      "meteor",
+      "node",
+      "mongodb",
+      "blaze",
+      "foundation",
+      "cordova"
+    ],
+    "title": "Ready To Work",
+    "description": "Real time web application created with Meteor. On demand self scheduled employment service. Offers work to nearby users to fill last minute cancellations and short staff situation. Shows live location of all users nearby, who can also browse and apply for job postings. ",
+    "type": "Real-time Web App",
+    "text1": "",
+    "text2": ""
+  },
+  {
+    "id": "gethsworld",
+    "technologies": ["react", "js", "html", "css", "mui"],
+    "title": "Gethsworld",
+    "description": "Inception - the website you are looking at!",
+    "type": "React Web App",
+    "iframeLink": "http://localhost:5173/",
+
+    "previewOnly": true
+  },
+  {
     "id": "globe-visualisation",
     "href2": "https://www.gethsworld.com/datavis/",
     "iframeLink": "https://www.gethsworld.com/datavis/",
