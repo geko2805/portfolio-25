@@ -3,7 +3,7 @@
     "id": "meditation-timer",
     "href2": "https://thetawave.netlify.app",
     "iframeLink": "https://thetawave.netlify.app",
-    "technologies": ["react", "mui", "firebase2", "webgl"],
+    "technologies": ["react", "mui", "firebase", "webgl"],
     "title": "Meditation Timer",
     "description": "A comprehensive meditation timer built in React, where users can create a custom soundscape, store and retrieve session data (firestore), view their history, see session data on weekly or monthly charts, earn badges for reaching milestones and more",
     "type": "Responsive Web App",
@@ -14,7 +14,7 @@
     "id": "nc-news",
     "href2": "https://gjonesncnews.netlify.app",
     "iframeLink": "https://gjonesncnews.netlify.app",
-    "technologies": ["node", "psql", "react", "mui"],
+    "technologies": ["react", "mui", "node", "psql"],
     "title": "NC News",
     "description": "Description for item 1",
     "type": "Full-Stack Web App",
@@ -24,11 +24,11 @@
   {
     "id": "safespace",
     "technologies": [
+      "react-native",
+      "expo",
       "ts",
       "tamagui",
-      "react-native",
-      "firebase2",
-      "expo",
+      "firebase",
       "maplibre"
     ],
     "title": "Safe Space Parking",
@@ -45,7 +45,7 @@
     "technologies": ["html", "css", "js", "soundcloud"],
     "title": "Occupy Sound",
     "description": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
-    "type": "Responsive Web App",
+    "type": "React Web App",
     "text1": "",
     "text2": ""
   },
@@ -54,7 +54,7 @@
     "technologies": [
       "meteor",
       "node",
-      "mongodb",
+      "mongoDB",
       "blaze",
       "foundation",
       "cordova"
@@ -67,7 +67,7 @@
   },
   {
     "id": "gethsworld",
-    "technologies": ["react", "js", "html", "css", "mui"],
+    "technologies": ["react", "mui", "html", "css", "js"],
     "title": "Gethsworld",
     "description": "Inception - the website you are looking at!",
     "type": "React Web App",
@@ -80,20 +80,13 @@
     "href2": "https://www.gethsworld.com/datavis/",
     "iframeLink": "https://www.gethsworld.com/datavis/",
     "title": "Climate Change Visualiser",
-    "technologies": ["html", "css", "js", "d3"],
+    "technologies": ["d3", "html", "css", "js"],
     "description": "Description for item 2",
     "type": "3D Data Visualisation",
     "text1": "",
     "text2": "",
     "notResponsive": true,
     "pdf": "DataVisualisation.pdf"
-  },
-  {
-    "id": "sustainable-world",
-    "title": "Sustainable world",
-    "type": "360 Marketing Campaign",
-    "description": "This marketing campaign was part of the Graphics module in my final year of Digital Design at Brunel. The aim of the campaign was to raise awareness on sustainability issues that are affecting our planet. These include pollution, climate change, deforestation and other global issues affecting the ecosystem.",
-    "technologies": ["ps"]
   },
 
   {
@@ -146,5 +139,20 @@
     "iframeLink": "https://gethsworld.com/tesseract/",
     "notResponsive": true,
     "previewOnly": true
+  },
+  {
+    "id": "sustainable-world",
+    "title": "Sustainable world",
+    "type": "360 Marketing Campaign",
+    "description": "This marketing campaign was part of the Graphics module in my final year of Digital Design at Brunel. The aim of the campaign was to raise awareness on sustainability issues that are affecting our planet. These include pollution, climate change, deforestation and other global issues affecting the ecosystem.",
+    "technologies": ["ps"]
+  },
+
+  {
+    "id": "stem-inspire",
+    "technologies": ["ps", "ai"],
+    "title": "STEM Inspire",
+    "description": "Product branding for a University initiative to get students interested in STEM subjects",
+    "type": "Logo Design & Branding"
   }
 ]

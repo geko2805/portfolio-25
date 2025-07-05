@@ -47,7 +47,7 @@ const Header = () => {
           backdropFilter: "blur(5px)",
           maskImage: `linear-gradient(to top, transparent 0%, ${theme.palette.background.default} 30%, ${theme.palette.background.default} 100%)`,
           WebkitMaskImage: `linear-gradient(to top, transparent 0%, ${theme.palette.background.default} 30%, ${theme.palette.background.default} 100%)`,
-          background: `linear-gradient(to bottom, #00000020, ${theme.palette.background.transparent})`,
+          background: `linear-gradient(to bottom, ${theme.palette.background.transparent}, transparent)`,
           // background: `linear-gradient(to top, ${theme.palette.background.default}, transparent)`,
 
           display: "flex",

@@ -24,9 +24,9 @@ import LaptopIcon from "@mui/icons-material/Laptop";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 
-import ReactIcon from "../assets/technologies/react.png";
-import ReactNativeIcon from "../assets/technologies/react-native.png";
-import PsIcon from "../assets/technologies/ps.png";
+// import ReactIcon from "../assets/technologies/react.png";
+// import ReactNativeIcon from "../assets/technologies/react-native.png";
+// import PsIcon from "../assets/technologies/ps.png";
 
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -50,9 +50,10 @@ import "swiper/css/effect-fade";
 import { getThumbnail, loadProjectImages } from "../utils/loadImages";
 
 // Import iframe container image files
-import laptopImage from "../assets/laptop.png";
-import tabletImage from "../assets/tablet.png";
-import phoneImage from "../assets/phone.png";
+import laptopImage from "../assets/laptop.webp";
+import tabletImage from "../assets/tablet.webp";
+import phoneImage from "../assets/phone.webp";
+import { useColorMode } from "../theme/ThemeProvider";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: "relative",
@@ -87,6 +88,20 @@ const Overlay = styled(Box)(({ theme }) => ({
   transition: "opacity 0.3s ease",
   color: theme.palette.common.white,
 }));
+
+// const ProjectText = styled(Box)(({ theme }) => ({
+//   position: "absolute",
+//   top: 0,
+//   left: 0,
+//   width: "100%",
+//   height: "100%",
+//   display: "flex",
+//   flexDirection: "column",
+//   justifyContent: "space-between",
+//   alignItems: "center",
+//   opacity: 1,
+//   color: theme.palette.text.primary,
+// }));
 
 const Technologies = styled(Box)(({ theme }) => ({
   position: "absolute",
@@ -123,7 +138,41 @@ const ModalBox = styled(Box)(({ theme }) => ({
   },
 }));
 
+const technologyIconsDarkmode = import.meta.glob(
+  "../assets/technologies/darkmode/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const technologyIconsLightmode = import.meta.glob(
+  "../assets/technologies/lightmode/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const technologyIconsDarkmodeLarge = import.meta.glob(
+  "../assets/technologies/darkmode-large/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const technologyIconsLightmodeLarge = import.meta.glob(
+  "../assets/technologies/lightmode-large/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
 const PortfolioGrid = ({ projects }) => {
+  const { mode } = useColorMode();
+
   //modal
   const [open, setOpen] = useState(false);
 
@@ -231,31 +280,30 @@ const PortfolioGrid = ({ projects }) => {
                 image={getThumbnail(project.id)}
                 alt={`${project.title} thumbnail`}
                 sx={{
-                  objectFit: "cover",
+                  objectFit: "contain",
                   maxWidth: 300,
                   margin: "auto",
-                  width: 300,
+                  width: 250,
                   // transform: "scale(0.92)",
                 }}
               />
+
               <Technologies className="technologies">
-                {project.technologies.includes("react") ? (
+                {project.technologies && project.technologies.length > 0 && (
                   <img
                     className="tech"
-                    style={{ width: "40px", height: "40px", margin: "10px" }}
-                    src={ReactIcon}
+                    src={
+                      mode === "light"
+                        ? technologyIconsLightmode[
+                            `../assets/technologies/lightmode/${project.technologies[0]}.png`
+                          ]
+                        : technologyIconsLightmode[
+                            `../assets/technologies/lightmode/${project.technologies[0]}.png`
+                          ]
+                    }
+                    alt={project.technologies[0]}
+                    style={{ width: "auto", height: "30px", margin: "10px" }}
                   />
-                ) : (
-                  ""
-                )}
-                {project.technologies.includes("react-native") ? (
-                  <img
-                    className="tech"
-                    style={{ width: "40px", height: "40px", margin: "10px" }}
-                    src={ReactNativeIcon}
-                  />
-                ) : (
-                  ""
                 )}
               </Technologies>
 
@@ -334,7 +382,7 @@ const PortfolioGrid = ({ projects }) => {
                         md: 4,
                         lg: 4,
                       },
-                      backgroundColor: theme.palette.background.default,
+                      backgroundColor: theme.palette.iframe.main,
                       borderRadius: "5px",
                     }}
                   >
@@ -390,50 +438,89 @@ const PortfolioGrid = ({ projects }) => {
                           // transition: "width 0.4s",
                           // scrollbarWidth: "none",
 
+                          //original laptop image scaling
+                          //   margin: "auto",
+                          // position: "absolute",
+                          // border: "none",
+                          // borderRadius:
+                          //   iframeDisplay === "laptop"
+                          //     ? "3% 3% 0 0 "
+                          //     : iframeDisplay === "tablet"
+                          //     ? 0
+                          //     : "1.5%",
+                          // left: iframeDisplay === "phone" ? `50.08%` : "50%",
+                          // top: 0,
+                          // marginTop:
+                          //   iframeDisplay === "laptop"
+                          //     ? "0.75%"
+                          //     : iframeDisplay === "tablet"
+                          //     ? "6%"
+                          //     : "8.27%",
+                          // width:
+                          //   iframeDisplay === "laptop"
+                          //     ? //  {
+                          //       //     xs: "calc(80%/0.2)",
+                          //       //     sm: "calc(80%/0.3)",
+                          //       //     md: "calc(80%/0.4)",
+                          //       //   }
+                          //       `calc(79.5% / ${scale})` //divide height and width by same valuee as transform scale
+                          //     : iframeDisplay === "tablet"
+                          //     ? `calc(33.4% / ${scale})`
+                          //     : `calc(22.5% / ${scale})`,
+                          // height:
+                          //   iframeDisplay === "laptop"
+                          //     ? // {
+                          //       //     xs: "calc(93%/0.2)",
+                          //       //     sm: "calc(93%/0.3)",
+                          //       //     md: "calc(93%/0.4)",
+                          //       //   }
+                          //       `calc(91.5% / ${scale})`
+                          //     : iframeDisplay === "tablet"
+                          //     ? `calc(78.4% / ${scale})`
+                          //     : `calc(70.5% / ${scale})`,
+                          // // transform: {
+                          // //   xs: `translateX(-50%) scale(0.2)`,
+                          // //   sm: `translateX(-50%) scale(0.3)`,
+                          // //   md: `translateX(-50%) scale(0.4)`,
+                          // // },
+                          // transform: `translateX(-50%) scale(${scale})`,
+                          // transformOrigin: "center top",
+                          // //transition: "width 0.4s, height 0.4s, transform 0.4s",
+
                           margin: "auto",
                           position: "absolute",
                           border: "none",
                           borderRadius:
                             iframeDisplay === "laptop"
-                              ? "3% 3% 0 0 "
+                              ? "0"
                               : iframeDisplay === "tablet"
                               ? 0
-                              : "1.5%",
-                          left: iframeDisplay === "phone" ? `50.08%` : "50%",
+                              : "10px 10px 60px 60px",
+                          left:
+                            iframeDisplay === "laptop"
+                              ? `50.078%`
+                              : iframeDisplay === "tablet"
+                              ? "50.08%"
+                              : "50.08%",
                           top: 0,
                           marginTop:
                             iframeDisplay === "laptop"
-                              ? "0.75%"
+                              ? "3.9%"
                               : iframeDisplay === "tablet"
-                              ? "6%"
-                              : "8.27%",
+                              ? "4.8%"
+                              : "4.75%",
                           width:
                             iframeDisplay === "laptop"
-                              ? //  {
-                                //     xs: "calc(80%/0.2)",
-                                //     sm: "calc(80%/0.3)",
-                                //     md: "calc(80%/0.4)",
-                                //   }
-                                `calc(79.5% / ${scale})` //divide height and width by same valuee as transform scale
+                              ? `calc(73.6% / ${scale})` //divide height and width by same valuee as transform scale
                               : iframeDisplay === "tablet"
                               ? `calc(33.4% / ${scale})`
-                              : `calc(22.5% / ${scale})`,
+                              : `calc(25.8% / ${scale})`,
                           height:
                             iframeDisplay === "laptop"
-                              ? // {
-                                //     xs: "calc(93%/0.2)",
-                                //     sm: "calc(93%/0.3)",
-                                //     md: "calc(93%/0.4)",
-                                //   }
-                                `calc(91.5% / ${scale})`
+                              ? `calc(85% / ${scale})`
                               : iframeDisplay === "tablet"
-                              ? `calc(78.4% / ${scale})`
-                              : `calc(70.5% / ${scale})`,
-                          // transform: {
-                          //   xs: `translateX(-50%) scale(0.2)`,
-                          //   sm: `translateX(-50%) scale(0.3)`,
-                          //   md: `translateX(-50%) scale(0.4)`,
-                          // },
+                              ? `calc(82.2% / ${scale})`
+                              : `calc(90% / ${scale})`,
                           transform: `translateX(-50%) scale(${scale})`,
                           transformOrigin: "center top",
                           //transition: "width 0.4s, height 0.4s, transform 0.4s",
@@ -652,7 +739,7 @@ const PortfolioGrid = ({ projects }) => {
                           onClick={() => {
                             window.open(selectedProject.href2);
                           }}
-                          startIcon={<LaunchIcon />}
+                          endIcon={<LaunchIcon />}
                           sx={{
                             backgroundColor: "lightblue",
                             color: "white",
@@ -741,11 +828,53 @@ const PortfolioGrid = ({ projects }) => {
                   </Box>
                 )}
 
+                <Typography sx={{ fontWeight: 700, alignSelf: "center" }}>
+                  {" "}
+                  Tech Stack
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    width: "fit-content",
+                    alignSelf: "center",
+                    px: 2,
+                    // m: 1,
+                    gap: 2,
+                    //bgcolor: "#cccccc",
+                  }}
+                >
+                  {" "}
+                  {selectedProject.technologies.map((icon) => {
+                    const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
+                    const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
+                    const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
+                    const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
+
+                    return (
+                      <>
+                        <img
+                          className="tech"
+                          key={icon}
+                          src={mode === "light" ? imgSrcLM : imgSrcDM}
+                          alt={icon}
+                          style={{
+                            width: "auto",
+                            height: "40px",
+                          }}
+                        />{" "}
+                      </>
+                    );
+                  })}
+                </Box>
                 <Typography
                   variant="body1"
                   sx={{
                     color: theme.palette.text.secondary,
                     px: { xs: 2, sm: 0 },
+                    margin: "auto",
                   }}
                 >
                   {selectedProject.description}
@@ -773,18 +902,15 @@ const PortfolioGrid = ({ projects }) => {
                         fontWeight: 200,
                       }}
                     >
-                      View Project
+                      More info
                     </NavButton>
                   )}
-                  {selectedProject.href2 && (
+                  {/* {selectedProject.href2 && (
                     <NavButton
                       onClick={() => {
                         window.open(selectedProject.href2);
                       }}
-                      //   variant="contained"
-                      //   href={selectedProject.href2}
-                      //   target="_blank"
-                      //   rel="noopener noreferrer"
+               
                       startIcon={<LaunchIcon />}
                       sx={{
                         backgroundColor: "lightblue",
@@ -796,7 +922,7 @@ const PortfolioGrid = ({ projects }) => {
                     >
                       Launch website
                     </NavButton>
-                  )}
+                  )} */}
                 </Box>
               </>
             )}

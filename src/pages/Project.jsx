@@ -9,13 +9,43 @@ import {
   getThumbnail,
   getProjectPdf,
 } from "../utils/loadImages";
+import { useColorMode } from "../theme/ThemeProvider";
 
-const technologyIcons = import.meta.glob("../assets/technologies/*.png", {
-  eager: true,
-  import: "default",
-});
+const technologyIconsDarkmode = import.meta.glob(
+  "../assets/technologies/darkmode/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const technologyIconsLightmode = import.meta.glob(
+  "../assets/technologies/lightmode/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const technologyIconsDarkmodeLarge = import.meta.glob(
+  "../assets/technologies/darkmode-large/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const technologyIconsLightmodeLarge = import.meta.glob(
+  "../assets/technologies/lightmode-large/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 
 const Project = () => {
+  const { mode } = useColorMode();
+
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
   const [fullSizeImages, setFullSizeImages] = useState([]);
@@ -91,14 +121,8 @@ const Project = () => {
           letterSpacing: "-0.15rem",
           //margin: "0 0 1.5rem",
           p: "1.5rem",
-
           lineHeight: "2.4rem",
-          //   animationName: "fadeInUp",
-          //   animationDuration: "2s",
           color: theme.palette.text.main,
-          //   animationIterationCount: 1,
-          //   animationFillMode: "forwards",
-          //   opacity: 0,
           cursor: "default",
           zIndex: 1,
         }}
@@ -114,12 +138,6 @@ const Project = () => {
           fontWeight: 300,
           mt: "0.5em",
           letterSpacing: "-1px",
-          animationName: "fadeInUp",
-          animationDuration: "1.5s",
-
-          animationIterationCount: 1,
-          animationFillMode: "forwards",
-          opacity: 0,
         }}
       >
         {project.type}
@@ -128,9 +146,9 @@ const Project = () => {
         className="fade delay2"
         sx={{
           display: "flex",
-          gap: 1,
+          gap: 2,
           width: "fit-content",
-          width: { xs: "100%", sm: "80%", md: "60%", lg: "50%" },
+          width: { xs: "100%", sm: "90%", md: "65%", lg: "50%" },
           p: 3,
           flexWrap: "wrap",
           margin: "auto",
@@ -146,16 +164,18 @@ const Project = () => {
       >
         {project.technologies &&
           project.technologies.map((icon) => {
-            const path = `../assets/technologies/${icon}.png`;
-            const imgSrc = technologyIcons[path];
+            const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
+            const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
+            const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
+            const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
 
             return (
               <img
                 key={icon}
-                src={imgSrc}
+                src={mode === "light" ? imgSrcLM : imgSrcDM}
                 alt={icon}
                 style={{
-                  width: "50px",
+                  width: "auto",
                   height: "50px",
                 }}
               />

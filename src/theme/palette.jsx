@@ -11,7 +11,7 @@ export const lightPalette = {
   background: {
     default: "#f4f6f8",
     paper: "#ffffff",
-    transparent: "rgba(255,255,255,0.5)",
+    transparent: "##f4f6f8b4",
   },
   text: {
     primary: "#1e1e1e",
@@ -19,6 +19,9 @@ export const lightPalette = {
   },
   accent: {
     main: "#ffbe16",
+  },
+  iframe: {
+    main: "#ffffff",
   },
 };
 
@@ -31,9 +34,11 @@ export const darkPalette = {
     main: "#607d8b",
   },
   background: {
-    default: "#121212",
-    paper: "#1e1e1e",
-    transparent: "rgba(0,0,0,0.5)",
+    paper: "#121212",
+    // paper: "#0b0b0b",
+    //paper: "#000f14",
+    default: "#010101",
+    transparent: "#121212b4",
   },
   text: {
     primary: "#ffffff",
@@ -41,6 +46,9 @@ export const darkPalette = {
   },
   accent: {
     main: "#607d8b",
-    main: "rgba(0,188,207,0.8)",
+    // main: "rgba(0,188,207,0.8)",
+  },
+  iframe: {
+    main: "#121212",
   },
 };

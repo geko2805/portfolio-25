@@ -18,15 +18,15 @@ import PortfolioGrid from "../components/PortfolioGrid";
 
 import projects from "../data/projects.json";
 
-//import all thumbs
-const thumbs = import.meta.glob("../assets/thumbs/*.{png,jpg,jpeg,svg}", {
-  eager: true,
-});
+// //import all thumbs
+// const thumbs = import.meta.glob("../assets/thumbs/*.{png,jpg,jpeg,svg}", {
+//   eager: true,
+// });
 
-//import all previews
-const previews = import.meta.glob("../assets/previews/*.{png,jpg,jpeg,svg}", {
-  eager: true,
-});
+// //import all previews
+// const previews = import.meta.glob("../assets/previews/*.{png,jpg,jpeg,svg}", {
+//   eager: true,
+// });
 
 const Projects = () => {
   const navigate = useNavigate();
