@@ -78,11 +78,15 @@
 }
 
 .delay2 {
-  -webkit-animation-delay: 2s !important;
-  animation-delay: 2s !important;
+  -webkit-animation-delay: 1.5s !important;
+  animation-delay: 1.5s !important;
 }
 
 .delay3 {
-  -webkit-animation-delay: 3s !important;
-  animation-delay: 3s !important;
+  -webkit-animation-delay: 2s !important;
+  animation-delay: 2s !important;
+}
+.swiper-pagination {
+  bottom: 10px !important; /* Push it below the slide area */
+  z-index: 1;
 }
