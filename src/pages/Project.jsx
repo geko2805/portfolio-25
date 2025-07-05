@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 
 import projects from "../data/projects.json";
 import {
@@ -10,6 +10,28 @@ import {
   getProjectPdf,
 } from "../utils/loadImages";
 import { useColorMode } from "../theme/ThemeProvider";
+
+import northcodersLogo from "../assets/northcoders.webp";
+import brunelLogo from "../assets/brunel.webp";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+
+//  Swiper core and required modules
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  EffectFade,
+  A11y,
+} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 const technologyIconsDarkmode = import.meta.glob(
   "../assets/technologies/darkmode/*.png",
@@ -54,6 +76,8 @@ const Project = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const theme = useTheme();
+  const scrollDown = useRef(null);
+  const topOfPage = useRef(null);
 
   useEffect(() => {
     const loadProject = async () => {
@@ -110,107 +134,363 @@ const Project = () => {
   }
 
   return (
-    <Box className="project" sx={{ mt: "80px", mb: "40px" }}>
-      <Typography
-        className="fade up"
-        sx={{
-          fontWeight: 700,
-          fontSize: "clamp(2.4em, 6vw, 3.0625rem)",
-          fontFamily: "Inconsolata, monospace",
-          animationDelay: "0.5s",
-          letterSpacing: "-0.15rem",
-          //margin: "0 0 1.5rem",
-          p: "1.5rem",
-          lineHeight: "2.4rem",
-          color: theme.palette.text.main,
-          cursor: "default",
-          zIndex: 1,
-        }}
-        variant="h1"
-      >
-        {project.title}
-      </Typography>
-
-      <Typography
-        className="fade up delay1"
-        sx={{
-          fontSize: "clamp(1.2rem, 3vw, 1.75rem)",
-          fontWeight: 300,
-          mt: "0.5em",
-          letterSpacing: "-1px",
-        }}
-      >
-        {project.type}
-      </Typography>
-      <Box
-        className="fade delay2"
-        sx={{
-          display: "flex",
-          gap: 2,
-          width: "fit-content",
-          width: { xs: "100%", sm: "90%", md: "65%", lg: "50%" },
-          p: 3,
-          flexWrap: "wrap",
-          margin: "auto",
-          justifyContent: "center",
-          transform: {
-            xs: "scale(0.6)",
-            sm: "scale(0.7)",
-            md: "scale(0.8)",
-            lg: "scale(0.9)",
-            xl: "scale(1)",
-          },
-        }}
-      >
-        {project.technologies &&
-          project.technologies.map((icon) => {
-            const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
-            const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
-            const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
-            const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
-
-            return (
-              <img
-                key={icon}
-                src={mode === "light" ? imgSrcLM : imgSrcDM}
-                alt={icon}
-                style={{
-                  width: "auto",
-                  height: "50px",
-                }}
-              />
-            );
-          })}
-      </Box>
-      <Box
-        className="fade delay2"
-        sx={{ width: "100%", margin: "auto", maxWidth: "800px" }}
-      >
-        <img
-          src={fullSizeImages[0]}
-          width="100%"
-          height="100%"
-          style={{
-            objectFit: "contain",
-            maxHeight: "500px",
+    <Box
+      ref={topOfPage}
+      className="project"
+      sx={{
+        pb: "50px",
+        bgcolor: theme.palette.background.paper,
+        width: "100%",
+        top: 0,
+        position: "absolute",
+      }}
+    >
+      <Box sx={{ mt: "80px", position: "relative" }}>
+        <Typography
+          className="fade up"
+          sx={{
+            fontWeight: 700,
+            fontSize: "clamp(2.4em, 6vw, 3.0625rem)",
+            fontFamily: "Inconsolata, monospace",
+            animationDelay: "0.5s",
+            letterSpacing: "-0.15rem",
+            //margin: "0 0 1.5rem",
+            p: "0.7rem",
+            lineHeight: "2.4rem",
+            color: theme.palette.text.main,
+            cursor: "default",
+            zIndex: 1,
           }}
-        />
-      </Box>
+          variant="h1"
+        >
+          {project.title}
+        </Typography>
 
-      <Box
-        className="fade delay2"
-        sx={{ width: "100%", margin: "auto", maxWidth: "800px" }}
-      >
-        {fullSizeImages.slice(1).map((img, index) => (
+        <Typography
+          className="fade up delay1"
+          sx={{
+            fontSize: "clamp(1.2rem, 3vw, 1.75rem)",
+            fontWeight: 300,
+            // mt: 1,
+            letterSpacing: "-1px",
+          }}
+        >
+          {project.type}
+        </Typography>
+
+        <Button
+          onClick={() => {
+            navigate(-1);
+          }}
+          sx={{
+            zIndex: 300,
+            position: "absolute",
+            left: { xs: "40px", sm: "50px", md: "70px", lg: "90px" },
+            top: { xs: "100px", sm: "115px", md: "130px" },
+          }}
+          startIcon={<ArrowBackIcon />}
+        >
+          Back
+        </Button>
+
+        <Box
+          className="fade delay2"
+          sx={{
+            width: "100%",
+            margin: "auto",
+            maxWidth: "800px",
+            position: "relative",
+          }}
+        >
           <img
-            key={index}
-            src={img}
+            src={fullSizeImages[0]}
             width="100%"
             height="100%"
-            alt={`${project.title} image ${index + 1}`}
-            loading="lazy"
+            style={{
+              objectFit: "contain",
+              maxHeight: "500px",
+            }}
           />
-        ))}
+          <Box
+            ref={scrollDown}
+            sx={{
+              scrollMarginTop: "30px",
+
+              display: "flex",
+              justifyContent: "center",
+              animation: "scrollDown 1s infinite",
+            }}
+          >
+            <Button
+              onClick={() => {
+                scrollDown.current
+                  ? scrollDown.current.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    })
+                  : "";
+              }}
+              sx={{
+                position: "absolute",
+                bottom: "10px",
+                display: "flex",
+              }}
+            >
+              <ArrowDownwardIcon />
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        className="fade delay3"
+        sx={{ bgcolor: theme.palette.background.default }}
+      >
+        <Box
+          sx={{
+            p: { xs: 0, sm: 2 },
+            width: { xs: "100%", sm: "90%", md: "80%", lg: "70%" },
+            maxWidth: "800px",
+            margin: "auto",
+          }}
+        >
+          {project.company && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                height: { xs: "30px", sm: "30px", md: "40px", lg: "45px" },
+              }}
+            >
+              <img
+                className="tech"
+                src={
+                  project.company
+                    ? project.company === "Brunel"
+                      ? brunelLogo
+                      : northcodersLogo
+                    : ""
+                }
+                alt={project.company ? project.company : ""}
+                style={{
+                  width: "auto",
+                  height: "100%",
+                  margin: "10px",
+                }}
+              />
+            </Box>
+          )}
+          {project.technologies && (
+            <Typography sx={{ fontWeight: 700, alignSelf: "center" }}>
+              {" "}
+              Tech Stack
+            </Typography>
+          )}
+          <Box
+            className="fade delay3"
+            sx={{
+              display: "flex",
+              gap: 2,
+              width: "fit-content",
+              width: { xs: "100%", sm: "90%", md: "90%", lg: "70%" },
+              py: 2,
+              px: { xs: 0, md: 2, lg: 3 },
+              flexWrap: "wrap",
+              margin: "auto",
+              justifyContent: "center",
+              transform: {
+                xs: "scale(0.6)",
+                sm: "scale(0.7)",
+                md: "scale(0.8)",
+                lg: "scale(0.9)",
+                xl: "scale(1)",
+              },
+            }}
+          >
+            {project.technologies &&
+              project.technologies.map((icon) => {
+                const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
+                const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
+                const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
+                const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
+
+                return (
+                  <img
+                    key={icon}
+                    src={mode === "light" ? imgSrcLM : imgSrcDM}
+                    alt={icon}
+                    style={{
+                      width: "auto",
+                      height: "60px",
+                    }}
+                  />
+                );
+              })}
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              gap: { xs: 4, sm: 5, md: 6 },
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+              {project.description}
+            </Typography>
+
+            {fullSizeImages && fullSizeImages.length > 1 && (
+              <Box sx={{ mt: 2, width: "100%", maxWidth: "800px" }}>
+                <img
+                  src={fullSizeImages[1]}
+                  alt={`${project.title} image 2`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain", // Ensure image maintains aspect ratio
+                  }}
+                  loading="lazy"
+                />
+              </Box>
+            )}
+
+            {project.text1 && (
+              <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+                {project.text1}
+              </Typography>
+            )}
+
+            {fullSizeImages && fullSizeImages.length > 2 && (
+              <Box sx={{ mt: 2, width: "100%", maxWidth: "800px" }}>
+                <img
+                  src={fullSizeImages[2]}
+                  alt={`${project.title} image 3`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain", // Ensure image maintains aspect ratio
+                  }}
+                  loading="lazy"
+                />
+              </Box>
+            )}
+
+            {project.text2 && (
+              <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+                {project.text2}
+              </Typography>
+            )}
+
+            {fullSizeImages && fullSizeImages.length > 3 && (
+              <Box sx={{ mt: 2, width: "100%", maxWidth: "800px" }}>
+                <img
+                  src={fullSizeImages[3]}
+                  alt={`${project.title} image 3`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain", // Ensure image maintains aspect ratio
+                  }}
+                  loading="lazy"
+                />
+              </Box>
+            )}
+
+            {project.text3 && (
+              <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+                {project.text3}
+              </Typography>
+            )}
+          </Box>
+        </Box>
+      </Box>
+
+      <Box
+        className="fade delay3"
+        sx={{
+          width: "100%",
+          maxWidth: "800px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 3,
+          margin: "auto",
+        }}
+      >
+        {fullSizeImages && fullSizeImages.length > 5 ? (
+          <Typography sx={{ mt: 2, p: 0 }} variant="h6">
+            Additional Images
+          </Typography>
+        ) : (
+          ""
+        )}
+
+        {fullSizeImages && fullSizeImages.length > 4 && (
+          <Box
+            sx={{
+              // display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+              width: "100%",
+              px: {
+                xs: 0,
+                md: 5,
+                lg: 5,
+              },
+              height: { xs: "auto", sm: "auto" },
+              width: { xs: "100%", sm: "90%", md: "80%", lg: "70%" },
+              maxHeight: "650px",
+            }}
+          >
+            <Swiper
+              modules={[Autoplay, Navigation, Pagination, EffectFade]}
+              loop={true}
+              effect={"fade"}
+              fadeEffect={{ crossFade: true }}
+              spaceBetween={0}
+              slidesPerView={1}
+              centeredSlides={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              navigation={false}
+              pagination={{ clickable: true, dynamicBullets: true }}
+              style={{
+                width: "auto",
+                maxWidth: "100%",
+                height: "clamp(300px, 80vh, 600px)",
+              }}
+            >
+              {fullSizeImages.slice(4).map((img, index) => (
+                <SwiperSlide
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                  }}
+                >
+                  <img
+                    loading="lazy"
+                    key={index}
+                    src={img}
+                    alt={`${project.title} image ${index + 1}`}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      maxHeight: "600px",
+                    }}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Box>
+        )}
       </Box>
 
       {pdfFile && (
@@ -291,6 +571,48 @@ const Project = () => {
           />
         </Box>
       )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          animation: "scrollDown 1s infinite",
+          flexDirection: "column",
+          gap: 1,
+          m: 2,
+          alignItems: "center",
+        }}
+      >
+        <Button
+          onClick={() => {
+            topOfPage.current
+              ? topOfPage.current.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+              : "";
+          }}
+          sx={{
+            justifyContent: "center",
+
+            display: "flex",
+          }}
+        >
+          <ArrowUpwardIcon />
+        </Button>
+        <Typography
+          sx={{ fontSize: "0.8rem", cursor: "pointer" }}
+          onClick={() => {
+            topOfPage.current
+              ? topOfPage.current.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+              : "";
+          }}
+        >
+          Return to top
+        </Typography>
+      </Box>
     </Box>
   );
 };

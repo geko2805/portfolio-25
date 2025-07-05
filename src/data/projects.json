@@ -8,7 +8,8 @@
     "description": "A comprehensive meditation timer built in React, where users can create a custom soundscape, store and retrieve session data (firestore), view their history, see session data on weekly or monthly charts, earn badges for reaching milestones and more",
     "type": "Responsive Web App",
     "text1": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
-    "text2": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page..."
+    "text2": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page...",
+    "text3": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page..."
   },
   {
     "id": "nc-news",
@@ -16,10 +17,11 @@
     "iframeLink": "https://gjonesncnews.netlify.app",
     "technologies": ["react", "mui", "node", "psql"],
     "title": "NC News",
-    "description": "Description for item 1",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
     "type": "Full-Stack Web App",
-    "text1": "",
-    "text2": ""
+    "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
+    "text2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
+    "company": "Northcoders"
   },
   {
     "id": "safespace",
@@ -36,7 +38,8 @@
     "type": "React Native Mobile App",
     "text1": "",
     "text2": "",
-    "videoLink": "esegdO-L6xw"
+    "videoLink": "esegdO-L6xw",
+    "company": "Northcoders"
   },
   {
     "id": "occupy-sound",
@@ -63,7 +66,8 @@
     "description": "Real time web application created with Meteor. On demand self scheduled employment service. Offers work to nearby users to fill last minute cancellations and short staff situation. Shows live location of all users nearby, who can also browse and apply for job postings. ",
     "type": "Real-time Web App",
     "text1": "",
-    "text2": ""
+    "text2": "",
+    "company": "Brunel"
   },
   {
     "id": "gethsworld",
@@ -86,7 +90,8 @@
     "text1": "",
     "text2": "",
     "notResponsive": true,
-    "pdf": "DataVisualisation.pdf"
+    "pdf": "DataVisualisation.pdf",
+    "company": "Brunel"
   },
 
   {
@@ -113,7 +118,8 @@
     "type": "UI/UX Design",
     "description": "Vegetarian cooking app design made with Google material design.",
     "technologies": ["figma", "ps"],
-    "pdf": "appDesign.pdf"
+    "pdf": "appDesign.pdf",
+    "company": "Brunel"
   },
   {
     "id": "16-step-records",
@@ -145,14 +151,18 @@
     "title": "Sustainable world",
     "type": "360 Marketing Campaign",
     "description": "This marketing campaign was part of the Graphics module in my final year of Digital Design at Brunel. The aim of the campaign was to raise awareness on sustainability issues that are affecting our planet. These include pollution, climate change, deforestation and other global issues affecting the ecosystem.",
-    "technologies": ["ps"]
+    "technologies": ["ps"],
+    "company": "Brunel"
   },
 
   {
     "id": "stem-inspire",
     "technologies": ["ps", "ai"],
     "title": "STEM Inspire",
-    "description": "Product branding for a University initiative to get students interested in STEM subjects",
-    "type": "Logo Design & Branding"
+    "description": "Product branding for Brunel University's initiative to get students interested in STEM subjects, alongside the launch of their new STEM block. This rebrand project incorporates multimedia assets including a website, logo and product branding. The logo represents Science, Technology, Engineering and Mathematics in a minimal design, in alignment with Brunel's style guidelines.",
+    "type": "Logo Design & Branding",
+    "company": "Brunel",
+    "text1": "The brief was to create a suitable brand which represented the subjects while also being recognisable as part of the existing Brunel brand. My solution features a simple logo design utilising the trademark Brunel red flashes, combined with 4 hexagons representing the 4 S.T.E.M. subjects. The inspiration came from chemical structure of elements, representing how the 4 siubjects make up the whole. The accompanying logo, uses this metaphor to illustrate the subjects, using icons to represent each of the subjects.  ",
+    "text2": "As well as designing the logos, branding guidelines and examples were created to show how it should and shouldn't be used as well as giving visual examples of how it would look on products. A website mockup was also created showcasing the features of the new learning centre."
   }
 ]

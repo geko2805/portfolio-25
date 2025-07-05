@@ -35,7 +35,11 @@ export const loadProjectImages = async (projectId) => {
     }
 
     const sorted = projectImagePaths.sort((a, b) => a.localeCompare(b));
-
+    // sorted.sort((a, b) => {
+    //   const nameA = a.split("/").pop().toLowerCase();
+    //   const nameB = b.split("/").pop().toLowerCase();
+    //   return nameA.localeCompare(nameB);
+    // });
     // Load the filtered images
     const loadedImages = await Promise.all(
       sorted.map(async (path) => {
@@ -43,7 +47,6 @@ export const loadProjectImages = async (projectId) => {
         return module;
       })
     );
-
     return loadedImages;
   } catch (error) {
     console.error(`Error loading images for project ${projectId}:`, error);

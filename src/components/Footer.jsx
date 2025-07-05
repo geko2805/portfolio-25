@@ -20,7 +20,7 @@ const Footer = () => {
         display: "flex",
         alignItems: "center",
         position: "fixed",
-        zIndex: 10000,
+        zIndex: 100,
         overflow: "hidden",
       }}
     >

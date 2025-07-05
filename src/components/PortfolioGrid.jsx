@@ -16,7 +16,6 @@ import {
   Radio,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import LaunchIcon from "@mui/icons-material/Launch";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 
@@ -24,13 +23,11 @@ import LaptopIcon from "@mui/icons-material/Laptop";
 import TabletMacIcon from "@mui/icons-material/TabletMac";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 
-// import ReactIcon from "../assets/technologies/react.png";
-// import ReactNativeIcon from "../assets/technologies/react-native.png";
-// import PsIcon from "../assets/technologies/ps.png";
-
+import LaunchIcon from "@mui/icons-material/Launch";
 import CloseIcon from "@mui/icons-material/Close";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
 
-// import Swiper core and required modules
+//  Swiper core and required modules
 import {
   Autoplay,
   Navigation,
@@ -38,16 +35,17 @@ import {
   EffectFade,
   A11y,
 } from "swiper/modules";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
+// Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 import { getThumbnail, loadProjectImages } from "../utils/loadImages";
+
+import northcodersLogo from "../assets/northcoders.webp";
+import brunelLogo from "../assets/brunel.webp";
 
 // Import iframe container image files
 import laptopImage from "../assets/laptop.webp";
@@ -119,22 +117,22 @@ const ModalBox = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
-  transform: "translate(-50%, -50%)",
+  transform: "translate(-50%, -52.5%)",
   width: "90%",
   maxWidth: 800,
   background: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[5],
-  padding: theme.spacing(4),
+  paddingBottom: theme.spacing(3),
   outline: "none",
-  maxHeight: "87.5%",
+  maxHeight: "85%",
   overflowY: "auto",
   display: "flex",
-  zIndex: 10001,
+  zIndex: 100000,
   flexDirection: "column",
   gap: theme.spacing(2),
   [theme.breakpoints.down("sm")]: {
-    padding: theme.spacing(0),
+    gap: theme.spacing(1),
   },
 }));
 
@@ -192,12 +190,12 @@ const PortfolioGrid = ({ projects }) => {
       timeoutId = setTimeout(() => func(...args), delay);
     };
   };
-  const [scale, setScale] = useState(0.2);
+  const [scale, setScale] = useState(0.18);
 
   const updateScale = useCallback(() => {
     const vw = window.innerWidth;
-    const minScale = 0.2;
-    const maxScale = 0.4;
+    const minScale = 0.18;
+    const maxScale = 0.35;
     const minWidth = 360; // Mobile-first starting point
     const maxWidth = 900; // Max scale at 900px
     // Linear interpolation: scale = minScale + (vw - minWidth) / (maxWidth - minWidth) * (maxScale - minScale)
@@ -205,7 +203,8 @@ const PortfolioGrid = ({ projects }) => {
       maxScale,
       Math.max(
         minScale,
-        0.2 + ((vw - minWidth) / (maxWidth - minWidth)) * (maxScale - minScale)
+        minScale +
+          ((vw - minWidth) / (maxWidth - minWidth)) * (maxScale - minScale)
       )
     );
     setScale(newScale);
@@ -233,6 +232,7 @@ const PortfolioGrid = ({ projects }) => {
     setFullSizeImages([]); // Clear images to free memory
     setSelectedProject(null);
     setIsModalLoading(true);
+    setIframeDisplay("laptop");
   };
 
   const handleIframeSizeChange = (event) => {
@@ -342,27 +342,96 @@ const PortfolioGrid = ({ projects }) => {
               <>
                 <Box
                   sx={{
-                    textAlign: "right",
-                    pt: { xs: 2, sm: 0 },
-                    pr: { xs: 2, sm: 0 },
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    position: "sticky",
+                    top: 0,
+                    backdropFilter: "blur(10px)",
+                    zIndex: 100,
                   }}
                 >
-                  <Button
-                    onClick={closeModal}
-                    sx={{ color: theme.palette.text.secondary }}
-                    endIcon={<CloseIcon />}
+                  <Box
+                    sx={{
+                      textAlign: "left",
+                      pt: 0,
+                      pl: 2,
+                    }}
                   >
-                    Close
-                  </Button>
+                    <img
+                      className="tech"
+                      src={
+                        selectedProject.company
+                          ? selectedProject.company === "Brunel"
+                            ? brunelLogo
+                            : northcodersLogo
+                          : ""
+                      }
+                      alt={
+                        selectedProject.company ? selectedProject.company : ""
+                      }
+                      style={{
+                        width: "auto",
+                        height: "50px",
+                        margin: "10px",
+                      }}
+                    />
+                  </Box>
+                  <Box
+                    sx={{
+                      textAlign: "right",
+                      pt: 0,
+                      pr: 2,
+                    }}
+                  >
+                    <Button
+                      onClick={closeModal}
+                      sx={{ color: theme.palette.text.secondary }}
+                      endIcon={<CloseIcon />}
+                    >
+                      Close
+                    </Button>
+                  </Box>
                 </Box>
-
-                <Typography
-                  variant="h4"
-                  sx={{ fontWeight: 200, margin: "auto", p: 0, mt: 0 }}
+                <Box
+                  sx={{
+                    margin: "auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    mb: 1,
+                  }}
                 >
-                  {selectedProject.title}
-                </Typography>
-
+                  <Typography
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "clamp(2em, 5vw, 2.5rem)",
+                      fontFamily: "Inconsolata, monospace",
+                      letterSpacing: "-0.15rem",
+                      lineHeight: "2.4rem",
+                      color: theme.palette.text.main,
+                      cursor: "default",
+                      zIndex: 1,
+                      p: 0,
+                      mt: 0,
+                    }}
+                    variant="h1"
+                  >
+                    {selectedProject.title}
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontWeight: 200,
+                      fontSize: "clamp(1em, 2.5vw, 1.25rem)",
+                      p: 0,
+                      mt: 0,
+                    }}
+                  >
+                    {selectedProject.type}
+                  </Typography>
+                </Box>
                 {selectedProject.iframeLink ? (
                   <Box
                     sx={{
@@ -376,12 +445,7 @@ const PortfolioGrid = ({ projects }) => {
                         md: 5,
                         lg: 5,
                       },
-                      py: {
-                        xs: 3,
-                        sm: 3,
-                        md: 4,
-                        lg: 4,
-                      },
+                      pt: 1,
                       backgroundColor: theme.palette.iframe.main,
                       borderRadius: "5px",
                     }}
@@ -725,33 +789,6 @@ const PortfolioGrid = ({ projects }) => {
                         />
                       </RadioGroup>
                     </FormControl>
-
-                    <Box
-                      sx={{
-                        display: "flex",
-                        gap: 2,
-                        mt: 2,
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedProject.href2 && (
-                        <NavButton
-                          onClick={() => {
-                            window.open(selectedProject.href2);
-                          }}
-                          endIcon={<LaunchIcon />}
-                          sx={{
-                            backgroundColor: "lightblue",
-                            color: "white",
-                            textTransform: "uppercase",
-                            fontWeight: 200,
-                            "&:hover": { backgroundColor: "skyblue" },
-                          }}
-                        >
-                          Launch website
-                        </NavButton>
-                      )}
-                    </Box>
                   </Box>
                 ) : (
                   <Box
@@ -827,54 +864,13 @@ const PortfolioGrid = ({ projects }) => {
                     </Swiper>
                   </Box>
                 )}
-
-                <Typography sx={{ fontWeight: 700, alignSelf: "center" }}>
-                  {" "}
-                  Tech Stack
-                </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    width: "fit-content",
-                    alignSelf: "center",
-                    px: 2,
-                    // m: 1,
-                    gap: 2,
-                    //bgcolor: "#cccccc",
-                  }}
-                >
-                  {" "}
-                  {selectedProject.technologies.map((icon) => {
-                    const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
-                    const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
-                    const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
-                    const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
-
-                    return (
-                      <>
-                        <img
-                          className="tech"
-                          key={icon}
-                          src={mode === "light" ? imgSrcLM : imgSrcDM}
-                          alt={icon}
-                          style={{
-                            width: "auto",
-                            height: "40px",
-                          }}
-                        />{" "}
-                      </>
-                    );
-                  })}
-                </Box>
                 <Typography
                   variant="body1"
                   sx={{
                     color: theme.palette.text.secondary,
-                    px: { xs: 2, sm: 0 },
+                    px: { xs: 2, sm: 3, md: 6, lg: 7 },
                     margin: "auto",
+                    textAlign: "center",
                   }}
                 >
                   {selectedProject.description}
@@ -883,8 +879,9 @@ const PortfolioGrid = ({ projects }) => {
                 <Box
                   sx={{
                     display: "flex",
+                    flexWrap: "wrap",
                     gap: 2,
-                    mt: 2,
+                    mt: 1,
                     justifyContent: "center",
                   }}
                 >
@@ -895,6 +892,7 @@ const PortfolioGrid = ({ projects }) => {
                       onClick={() => {
                         navigate(`/projects/${selectedProject.id}`);
                       }}
+                      endIcon={<ReadMoreIcon />}
                       sx={{
                         borderColor: theme.palette.primary.main,
                         color: theme.palette.primary.main,
@@ -905,13 +903,12 @@ const PortfolioGrid = ({ projects }) => {
                       More info
                     </NavButton>
                   )}
-                  {/* {selectedProject.href2 && (
+                  {selectedProject.href2 && (
                     <NavButton
                       onClick={() => {
                         window.open(selectedProject.href2);
                       }}
-               
-                      startIcon={<LaunchIcon />}
+                      endIcon={<LaunchIcon />}
                       sx={{
                         backgroundColor: "lightblue",
                         color: "white",
@@ -922,7 +919,57 @@ const PortfolioGrid = ({ projects }) => {
                     >
                       Launch website
                     </NavButton>
-                  )} */}
+                  )}
+                </Box>
+                <Box
+                  sx={{
+                    margin: "auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    mt: 1,
+                  }}
+                >
+                  <Typography sx={{ fontWeight: 700, alignSelf: "center" }}>
+                    {" "}
+                    Tech Stack
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      width: "fit-content",
+                      alignSelf: "center",
+                      px: 2,
+                      mt: 1,
+                      gap: 2,
+                      //bgcolor: "#cccccc",
+                    }}
+                  >
+                    {" "}
+                    {selectedProject.technologies.map((icon) => {
+                      const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
+                      const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
+                      const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
+                      const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
+
+                      return (
+                        <>
+                          <img
+                            className="tech"
+                            key={icon}
+                            src={mode === "light" ? imgSrcLM : imgSrcDM}
+                            alt={icon}
+                            style={{
+                              width: "auto",
+                              height: "40px",
+                            }}
+                          />{" "}
+                        </>
+                      );
+                    })}
+                  </Box>
                 </Box>
               </>
             )}
