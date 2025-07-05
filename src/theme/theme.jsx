@@ -14,7 +14,8 @@ export const getTheme = (mode) => {
           root: {
             borderRadius: "8px",
             //backgroundColor: "rgba(0, 188, 212, 0.5)",
-            backgroundColor: "#87d5fa20",
+            // backgroundColor: "#87d5fa20",
+            backgroundColor: palette.button.main,
           },
           containedPrimary: {
             boxShadow: "none",

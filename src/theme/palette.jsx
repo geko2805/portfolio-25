@@ -23,6 +23,9 @@ export const lightPalette = {
   iframe: {
     main: "#ffffff",
   },
+  button: {
+    main: "#87d5fa66",
+  },
 };
 
 export const darkPalette = {
@@ -34,10 +37,14 @@ export const darkPalette = {
     main: "#607d8b",
   },
   background: {
-    paper: "#121212",
+    //paper: "#121212",
     // paper: "#0b0b0b",
     //paper: "#000f14",
+    //paper: "#000f14",
+    paper: "#112233",
+
     default: "#010101",
+
     transparent: "#121212b4",
   },
   text: {
@@ -49,6 +56,9 @@ export const darkPalette = {
     // main: "rgba(0,188,207,0.8)",
   },
   iframe: {
-    main: "#121212",
+    main: "#112233",
+  },
+  button: {
+    main: "#a9e7da",
   },
 };

@@ -279,18 +279,18 @@ const Project = () => {
               />
             </Box>
           )}
-          {project.technologies && (
+          {/* {project.technologies && (
             <Typography sx={{ fontWeight: 700, alignSelf: "center" }}>
               {" "}
               Tech Stack
             </Typography>
-          )}
+          )} */}
           <Box
             className="fade delay3"
             sx={{
               display: "flex",
               gap: 2,
-              width: "fit-content",
+              //width: "fit-content",
               width: { xs: "100%", sm: "90%", md: "90%", lg: "70%" },
               py: 2,
               px: { xs: 0, md: 2, lg: 3 },
@@ -336,13 +336,14 @@ const Project = () => {
               justifyContent: "center",
             }}
           >
-            <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+            <Typography className="scrollFadeIn" sx={{ px: { xs: 2, sm: 0 } }}>
               {project.description}
             </Typography>
 
             {fullSizeImages && fullSizeImages.length > 1 && (
               <Box sx={{ mt: 2, width: "100%", maxWidth: "800px" }}>
                 <img
+                  className="grow"
                   src={fullSizeImages[1]}
                   alt={`${project.title} image 2`}
                   style={{
@@ -356,7 +357,10 @@ const Project = () => {
             )}
 
             {project.text1 && (
-              <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+              <Typography
+                className="scrollFadeIn"
+                sx={{ px: { xs: 2, sm: 0 } }}
+              >
                 {project.text1}
               </Typography>
             )}
@@ -364,6 +368,7 @@ const Project = () => {
             {fullSizeImages && fullSizeImages.length > 2 && (
               <Box sx={{ mt: 2, width: "100%", maxWidth: "800px" }}>
                 <img
+                  className="grow"
                   src={fullSizeImages[2]}
                   alt={`${project.title} image 3`}
                   style={{
@@ -377,7 +382,10 @@ const Project = () => {
             )}
 
             {project.text2 && (
-              <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+              <Typography
+                className="scrollFadeIn"
+                sx={{ px: { xs: 2, sm: 0 } }}
+              >
                 {project.text2}
               </Typography>
             )}
@@ -385,6 +393,7 @@ const Project = () => {
             {fullSizeImages && fullSizeImages.length > 3 && (
               <Box sx={{ mt: 2, width: "100%", maxWidth: "800px" }}>
                 <img
+                  className="grow"
                   src={fullSizeImages[3]}
                   alt={`${project.title} image 3`}
                   style={{
@@ -398,7 +407,10 @@ const Project = () => {
             )}
 
             {project.text3 && (
-              <Typography sx={{ px: { xs: 2, sm: 0 } }}>
+              <Typography
+                className="scrollFadeIn"
+                sx={{ px: { xs: 2, sm: 0 } }}
+              >
                 {project.text3}
               </Typography>
             )}
@@ -407,7 +419,6 @@ const Project = () => {
       </Box>
 
       <Box
-        className="fade delay3"
         sx={{
           width: "100%",
           maxWidth: "800px",
@@ -420,7 +431,11 @@ const Project = () => {
         }}
       >
         {fullSizeImages && fullSizeImages.length > 5 ? (
-          <Typography sx={{ mt: 2, p: 0 }} variant="h6">
+          <Typography
+            className="scrollFadeIn"
+            sx={{ mt: 2, p: 0 }}
+            variant="h6"
+          >
             Additional Images
           </Typography>
         ) : (
@@ -429,6 +444,7 @@ const Project = () => {
 
         {fullSizeImages && fullSizeImages.length > 4 && (
           <Box
+            className="grow"
             sx={{
               // display: "flex",
               alignItems: "center",
@@ -466,6 +482,7 @@ const Project = () => {
             >
               {fullSizeImages.slice(4).map((img, index) => (
                 <SwiperSlide
+                  className="swiper-slide"
                   key={index}
                   style={{
                     display: "flex",

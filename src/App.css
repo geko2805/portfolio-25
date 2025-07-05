@@ -90,3 +90,68 @@
   bottom: 10px !important; /* Push it below the slide area */
   z-index: 1;
 }
+
+.swiper-slide {
+  cursor: grab;
+}
+
+@keyframes scale-a-lil {
+  from {
+    scale: 0.7;
+  }
+}
+@keyframes growFromZero {
+  from {
+    scale: 0;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scrollFadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .grow {
+    animation: scale-a-lil linear both;
+    animation-timeline: view();
+    animation-range: 40vh 60vh;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .slideLeft {
+    animation: slideLeft linear both;
+    animation-timeline: view();
+    animation-range: 0vh 50vh;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .slideRight {
+    animation: slideRight linear both;
+    animation-timeline: view();
+    animation-range: 0vh 50vh;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scrollFadeIn {
+    animation: scrollFadeIn linear both;
+    animation-timeline: view();
+    animation-range: 30vh 50vh;
+  }
+}

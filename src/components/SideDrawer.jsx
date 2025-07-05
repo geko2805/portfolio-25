@@ -73,7 +73,6 @@ const SideDrawer = () => {
           sx={{ position: "initial", color: theme.palette.text.primary }}
         />
       </Button>
-
       <List
         sx={{
           fontSize: "1.4rem",

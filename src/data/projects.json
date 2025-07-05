@@ -24,6 +24,16 @@
     "company": "Northcoders"
   },
   {
+    "id": "gethsworld",
+    "technologies": ["react", "mui", "html", "css", "js"],
+    "title": "Gethsworld",
+    "description": "Inception - the website you are looking at!",
+    "type": "React Web App",
+    "iframeLink": "https://gethsworld.netlify.app/",
+
+    "previewOnly": true
+  },
+  {
     "id": "safespace",
     "technologies": [
       "react-native",
@@ -41,17 +51,7 @@
     "videoLink": "esegdO-L6xw",
     "company": "Northcoders"
   },
-  {
-    "id": "occupy-sound",
-    "href2": "https://www.gethsworld.com/occupy",
-    "iframeLink": "https://www.gethsworld.com/occupy",
-    "technologies": ["html", "css", "js", "soundcloud"],
-    "title": "Occupy Sound",
-    "description": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
-    "type": "React Web App",
-    "text1": "",
-    "text2": ""
-  },
+
   {
     "id": "ready-to-work",
     "technologies": [
@@ -69,16 +69,19 @@
     "text2": "",
     "company": "Brunel"
   },
-  {
-    "id": "gethsworld",
-    "technologies": ["react", "mui", "html", "css", "js"],
-    "title": "Gethsworld",
-    "description": "Inception - the website you are looking at!",
-    "type": "React Web App",
-    "iframeLink": "http://localhost:5173/",
 
-    "previewOnly": true
+  {
+    "id": "occupy-sound",
+    "href2": "https://www.gethsworld.com/occupy",
+    "iframeLink": "https://www.gethsworld.com/occupy",
+    "technologies": ["html", "css", "js", "soundcloud"],
+    "title": "Occupy Sound",
+    "description": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
+    "type": "React Web App",
+    "text1": "",
+    "text2": ""
   },
+
   {
     "id": "globe-visualisation",
     "href2": "https://www.gethsworld.com/datavis/",
