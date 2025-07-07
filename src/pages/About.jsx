@@ -8,11 +8,20 @@ import { useRef } from "react";
 import northcodersLogo from "../assets/northcoders.webp";
 import brunelLogo from "../assets/brunel.webp";
 import brunelLogoDark from "../assets/brunelDark.webp";
+import udemy from "../assets/udemy.webp";
+import udemyDark from "../assets/udemyDark.webp";
+
+import odin from "../assets/odin.webp";
+
 import { useColorMode } from "../theme/ThemeProvider";
+import NavButton from "../components/NavButton";
 const About = () => {
   const intro = useRef(null);
+  const intro2 = useRef(null);
+
   const education = useRef(null);
   const development = useRef(null);
+  const contact = useRef(null);
 
   const { mode } = useColorMode();
 
@@ -25,7 +34,6 @@ const About = () => {
         maxWidth: "800px",
         margin: "auto",
         mt: "80px",
-        mb: "40px",
       }}
     >
       <Typography
@@ -150,33 +158,82 @@ const About = () => {
             fontSize: { xs: "1em", sm: "1.2em", lg: "1.5vw" },
             fontWeight: 300,
             letterSpacing: "-1px",
-            color: theme.palette.text.seondary,
+            color: theme.palette.text.secondary,
           }}
         >
           Nice to meet you, my name is Gethin. I am a full-stack web developer
           with a history in design and a real passion for making user-centric
-          applications
+          applications.
         </Typography>
-
-        <Button
-          onClick={() => {
-            education.current
-              ? education.current.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                })
-              : "";
-          }}
+        <Box className="scrollFadeIn">
+          <Button
+            onClick={() => {
+              intro2.current
+                ? intro2.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                : "";
+            }}
+            sx={{
+              mt: 3,
+              display: "flex",
+              bgcolor: theme.palette.button.main,
+              color: theme.palette.secondary.main,
+              animation: "scrollDown 1s infinite",
+            }}
+          >
+            <ArrowDownwardIcon />
+          </Button>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 4,
+        }}
+        ref={intro2}
+      >
+        <Typography
+          className="scrollFadeIn"
           sx={{
-            mt: 3,
-            display: "flex",
-            bgcolor: theme.palette.button.main,
-            color: theme.palette.secondary.main,
-            animation: "scrollDown 1s infinite",
+            px: 4,
+            maxWidth: "800px",
+            fontSize: { xs: "1em", sm: "1.2em", lg: "1.5vw" },
+            fontWeight: 300,
+            letterSpacing: "-1px",
+            color: theme.palette.text.secondary,
           }}
         >
-          <ArrowDownwardIcon />
-        </Button>
+          In my spare time I enjoy hiking, wild camping, bouldering and cruising
+          on my skateboard. I love to travel and have had some great experiences
+          riding my motorcycle around and sleeping in my hammock.
+        </Typography>
+        <Box className="scrollFadeIn">
+          <Button
+            onClick={() => {
+              education.current
+                ? education.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                : "";
+            }}
+            sx={{
+              mt: 3,
+              display: "flex",
+              bgcolor: theme.palette.button.main,
+              color: theme.palette.secondary.main,
+              animation: "scrollDown 1s infinite",
+            }}
+          >
+            <ArrowDownwardIcon />
+          </Button>
+        </Box>
       </Box>
 
       <Box
@@ -205,33 +262,50 @@ const About = () => {
         <Typography
           className="scrollFadeIn"
           sx={{
-            fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
+            px: 4,
+            maxWidth: "800px",
+            fontSize: { xs: "1em", sm: "1.2em", lg: "1.5vw" },
             fontWeight: 300,
-            mt: 1,
             letterSpacing: "-1px",
+            color: theme.palette.text.secondary,
           }}
         >
           I studied Digital Design at Brunel University, gaining a First Class
-          Honors Degree and a valuable Design foundation
-        </Typography>
-        <Typography
-          className="scrollFadeIn"
-          sx={{
-            fontSize: "clamp(0.8rem, 1vw, 1.2rem)",
-            fontWeight: 300,
-            mt: 1,
-            letterSpacing: "-1px",
-          }}
-        >
-          Core modules included: Web Design & Development | Server-side
-          Development | Mobile Web Development | Programming for Digital Media |
-          Data Modelling | Interaction Design and Usability (UI/UX) | Digital
-          Design Theory | Digital Experiences | Business for Digital Creative
-          Industries | Experimental Digital Futures | Marketing & Professional
-          Development | Video Production | Design Practice | Applied Media
-          Aesthetics | Graphics | 3D Design & Animation | Digital Photography
+          Honors Degree, exhibiting at the Young Designer of the Year Exhibition
+          and established a valuable Design foundation
         </Typography>
 
+        <Box>
+          <Typography
+            className="scrollFadeIn"
+            sx={{
+              px: 4,
+              maxWidth: "800px",
+              fontSize: "clamp(0.8rem, 1vw, 1.2rem)",
+              fontWeight: 600,
+            }}
+          >
+            Core Modules Included
+          </Typography>
+          <Typography
+            className="scrollFadeIn"
+            sx={{
+              px: 4,
+              maxWidth: "800px",
+              fontSize: "clamp(0.8rem, 1vw, 1.2rem)",
+              fontWeight: 300,
+              mt: 1,
+            }}
+          >
+            Web Design & Development | Server-side Development | Mobile Web
+            Development | Programming for Digital Media | Data Modelling |
+            Interaction Design and Usability (UI/UX) | Digital Design Theory |
+            Digital Experiences | Business for Digital Creative Industries |
+            Experimental Digital Futures | Marketing & Professional Development
+            | Video Production | Design Practice | Applied Media Aesthetics |
+            Graphics | 3D Design & Animation | Digital Photography
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -250,9 +324,40 @@ const About = () => {
             }}
           />
         </Box>
+        <Box className="scrollFadeIn">
+          <Button
+            onClick={() => {
+              development.current
+                ? development.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                : "";
+            }}
+            sx={{
+              mt: 3,
+              display: "flex",
+              bgcolor: theme.palette.button.main,
+              color: theme.palette.secondary.main,
+              animation: "scrollDown 1s infinite",
+            }}
+          >
+            <ArrowDownwardIcon />
+          </Button>
+        </Box>
       </Box>
 
-      <Box sx={{ mt: 6, mb: 15 }}>
+      <Box
+        sx={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 4,
+        }}
+        ref={development}
+      >
         <Typography
           className="scrollFadeIn"
           sx={{
@@ -267,20 +372,121 @@ const About = () => {
         <Typography
           className="scrollFadeIn"
           sx={{
-            fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
+            px: 4,
+            maxWidth: "800px",
+            fontSize: { xs: "1em", sm: "1.2em", lg: "1.5vw" },
             fontWeight: 300,
-            mt: 1,
             letterSpacing: "-1px",
+            color: theme.palette.text.secondary,
           }}
         >
-          Since graduating I have spend a lot of time self-learning from online
+          Since graduating I have spent a lot of time self-learning from online
           platforms to widen my skills. I also embarked on a 3 month JavaScript
           development bootcamp to really polish my skills and get to grips with
           more back-end projects.
         </Typography>
+
+        <Box
+          className="scrollFadeIn"
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            height: { xs: "50px", sm: "60px" },
+          }}
+        >
+          <img
+            src={northcodersLogo}
+            alt="Brunel University Logo"
+            style={{
+              width: "auto",
+              height: "100%",
+              margin: "10px",
+            }}
+          />
+          <img
+            className="tech"
+            src={mode === "light" ? udemy : udemyDark}
+            alt="Brunel University Logo"
+            style={{
+              width: "auto",
+              height: "100%",
+              margin: "10px",
+            }}
+          />
+          <img
+            src={odin}
+            alt="Brunel University Logo"
+            style={{
+              width: "auto",
+              height: "100%",
+              margin: "10px",
+            }}
+          />{" "}
+        </Box>
+        <Box className="scrollFadeIn">
+          <Button
+            onClick={() => {
+              contact.current
+                ? contact.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                : "";
+            }}
+            sx={{
+              mt: 3,
+              display: "flex",
+              bgcolor: theme.palette.button.main,
+              color: theme.palette.secondary.main,
+              animation: "scrollDown 1s infinite",
+            }}
+          >
+            <ArrowDownwardIcon />
+          </Button>
+        </Box>
       </Box>
 
-      <Box sx={{ mb: 15 }}>Hello</Box>
+      <Box
+        sx={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 4,
+        }}
+        ref={contact}
+      >
+        <Typography
+          className="scrollFadeIn"
+          sx={{
+            fontSize: "clamp(1.2rem, 3vw, 1.75rem)",
+            fontWeight: 300,
+            // mt: 1,
+            letterSpacing: "-1px",
+          }}
+        >
+          Want to talk business ?{" "}
+        </Typography>
+
+        <Box className="scrollFadeIn">
+          <NavButton
+            onClick={() => {
+              navigate("/contact");
+            }}
+            sx={{
+              mt: 3,
+              scrollMarginTop: "10px",
+              display: "flex",
+              bgcolor: theme.palette.button.main,
+              color: theme.palette.secondary.main,
+            }}
+          >
+            Get in touch{" "}
+          </NavButton>
+        </Box>
+      </Box>
     </Box>
   );
 };

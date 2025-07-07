@@ -354,7 +354,6 @@ const Project = () => {
           )}
 
           <Typography
-            className="slideLeft"
             sx={{
               px: { xs: 2, sm: 0 },
               pt: 2,
@@ -365,7 +364,6 @@ const Project = () => {
             {project.description}
           </Typography>
           <Box
-            className="grow"
             sx={{
               display: "flex",
               gap: 2,
@@ -627,8 +625,8 @@ const Project = () => {
               autoHeight={true}
               modules={[Autoplay, Navigation, Pagination, EffectFade]}
               loop={true}
-              effect={"fade"}
-              fadeEffect={{ crossFade: true }}
+              // effect={"fade"}
+              // fadeEffect={{ crossFade: true }}
               spaceBetween={0}
               slidesPerView={1}
               centeredSlides={true}
