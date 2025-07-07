@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 /* Fade In */
 @keyframes fadeIn {
   from {
@@ -20,6 +20,22 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.1);
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -47,6 +63,19 @@
   text-align: center;
 }
 
+.slideIn {
+  -webkit-animation-name: slideFromLeft;
+  animation-name: slideFromLeft;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  transform: translateX(-200px);
+}
+
 .fade {
   -webkit-transition: font-size 0.3s;
   transition: font-size 0.3s;
@@ -59,10 +88,10 @@
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   opacity: 0;
-  -webkit-user-select: none;
+  /* -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; */
   cursor: default;
   z-index: 1;
 }
@@ -112,12 +141,6 @@
   }
 }
 
-@keyframes slideRight {
-  from {
-    transform: translateX(100%);
-  }
-}
-
 @keyframes scrollFadeIn {
   from {
     opacity: 0;
@@ -135,14 +158,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .slideLeft {
     animation: slideLeft linear both;
-    animation-timeline: view();
-    animation-range: 0vh 50vh;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .slideRight {
-    animation: slideRight linear both;
     animation-timeline: view();
     animation-range: 0vh 50vh;
   }

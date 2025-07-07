@@ -6,7 +6,7 @@ export const getTheme = (mode) => {
   return createTheme({
     palette,
     typography: {
-      fontFamily: "'Lato', Calibri, Arial, sans-serif",
+      fontFamily: " 'Lato', Calibri, Arial, sans-serif",
     },
     components: {
       MuiButton: {
@@ -15,7 +15,12 @@ export const getTheme = (mode) => {
             borderRadius: "8px",
             //backgroundColor: "rgba(0, 188, 212, 0.5)",
             // backgroundColor: "#87d5fa20",
+            color: "#000000",
             backgroundColor: palette.button.main,
+            transition: "transform 0.1s",
+            "&:hover": {
+              transform: "scale(1.02) translateY(-2px)",
+            },
           },
           containedPrimary: {
             boxShadow: "none",

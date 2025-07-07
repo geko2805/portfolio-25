@@ -26,6 +26,7 @@ import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import LaunchIcon from "@mui/icons-material/Launch";
 import CloseIcon from "@mui/icons-material/Close";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
+import EastIcon from "@mui/icons-material/East";
 
 //  Swiper core and required modules
 import {
@@ -46,6 +47,7 @@ import { getThumbnail, loadProjectImages } from "../utils/loadImages";
 
 import northcodersLogo from "../assets/northcoders.webp";
 import brunelLogo from "../assets/brunel.webp";
+import brunelLogoDark from "../assets/brunelDark.webp";
 
 // Import iframe container image files
 import laptopImage from "../assets/laptop.webp";
@@ -311,7 +313,12 @@ const PortfolioGrid = ({ projects }) => {
               </Technologies>
 
               <Overlay className="overlay">
-                <Typography variant="h6" sx={{ fontWeight: 200 }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 200,
+                  }}
+                >
                   {project.title}
                 </Typography>
                 <Typography
@@ -366,9 +373,11 @@ const PortfolioGrid = ({ projects }) => {
                       src={
                         selectedProject.company
                           ? selectedProject.company === "Brunel"
-                            ? brunelLogo
+                            ? mode === "light"
+                              ? brunelLogo
+                              : brunelLogoDark
                             : northcodersLogo
-                          : ""
+                          : null
                       }
                       alt={
                         selectedProject.company ? selectedProject.company : ""
@@ -389,7 +398,9 @@ const PortfolioGrid = ({ projects }) => {
                   >
                     <Button
                       onClick={closeModal}
-                      sx={{ color: theme.palette.text.secondary }}
+                      sx={{
+                        bgcolor: theme.palette.button.main,
+                      }}
                       endIcon={<CloseIcon />}
                     >
                       Close
@@ -416,8 +427,12 @@ const PortfolioGrid = ({ projects }) => {
                       color: theme.palette.text.main,
                       cursor: "default",
                       zIndex: 1,
-                      p: 0,
+                      pb: 1,
                       mt: 0,
+                      textAlign: "center",
+                      // display: "flex",
+                      // justifyContent: "center",
+                      // margin: "auto",
                     }}
                     variant="h1"
                   >
@@ -456,7 +471,9 @@ const PortfolioGrid = ({ projects }) => {
                           color: theme.palette.text.primary,
                           textTransform: "uppercase",
                           fontWeight: 200,
-                          "&:hover": { backgroundColor: "skyblue" },
+                          "&:hover": {
+                            backgroundColor: theme.palette.accent.main,
+                          },
                         }}
                       >
                         Launch
@@ -508,78 +525,11 @@ const PortfolioGrid = ({ projects }) => {
 
                         <Box
                           component="iframe"
-                          // scrolling="no"
                           onLoad={() => setIsModalLoading(false)}
                           className="iframe-preview"
                           id="inlineFrameExample"
                           title="Inline Frame Example"
                           sx={{
-                            // zoom - not supported by all browsers
-                            // height:
-                            //   iframeDisplay === "laptop"
-                            //     ? `93%`
-                            //     : iframeDisplay === "tablet"
-                            //     ? `78.4%`
-                            //     : `70.1%`,
-                            // width:
-                            //   iframeDisplay === "laptop"
-                            //     ? `80%`
-                            //     : iframeDisplay === "tablet"
-                            //     ? `33.4%`
-                            //     : `22.2%`,
-                            // zoom: { xs: 0.2, sm: 0.3, md: 0.4 },
-                            // transition: "width 0.4s",
-                            // scrollbarWidth: "none",
-
-                            //original laptop image scaling
-                            //   margin: "auto",
-                            // position: "absolute",
-                            // border: "none",
-                            // borderRadius:
-                            //   iframeDisplay === "laptop"
-                            //     ? "3% 3% 0 0 "
-                            //     : iframeDisplay === "tablet"
-                            //     ? 0
-                            //     : "1.5%",
-                            // left: iframeDisplay === "phone" ? `50.08%` : "50%",
-                            // top: 0,
-                            // marginTop:
-                            //   iframeDisplay === "laptop"
-                            //     ? "0.75%"
-                            //     : iframeDisplay === "tablet"
-                            //     ? "6%"
-                            //     : "8.27%",
-                            // width:
-                            //   iframeDisplay === "laptop"
-                            //     ? //  {
-                            //       //     xs: "calc(80%/0.2)",
-                            //       //     sm: "calc(80%/0.3)",
-                            //       //     md: "calc(80%/0.4)",
-                            //       //   }
-                            //       `calc(79.5% / ${scale})` //divide height and width by same valuee as transform scale
-                            //     : iframeDisplay === "tablet"
-                            //     ? `calc(33.4% / ${scale})`
-                            //     : `calc(22.5% / ${scale})`,
-                            // height:
-                            //   iframeDisplay === "laptop"
-                            //     ? // {
-                            //       //     xs: "calc(93%/0.2)",
-                            //       //     sm: "calc(93%/0.3)",
-                            //       //     md: "calc(93%/0.4)",
-                            //       //   }
-                            //       `calc(91.5% / ${scale})`
-                            //     : iframeDisplay === "tablet"
-                            //     ? `calc(78.4% / ${scale})`
-                            //     : `calc(70.5% / ${scale})`,
-                            // // transform: {
-                            // //   xs: `translateX(-50%) scale(0.2)`,
-                            // //   sm: `translateX(-50%) scale(0.3)`,
-                            // //   md: `translateX(-50%) scale(0.4)`,
-                            // // },
-                            // transform: `translateX(-50%) scale(${scale})`,
-                            // transformOrigin: "center top",
-                            // //transition: "width 0.4s, height 0.4s, transform 0.4s",
-
                             margin: "auto",
                             position: "absolute",
                             border: "none",
@@ -899,6 +849,8 @@ const PortfolioGrid = ({ projects }) => {
                   sx={{
                     color: theme.palette.text.secondary,
                     px: { xs: 2, sm: 3, md: 6, lg: 7 },
+                    py: 1,
+
                     margin: "auto",
                     textAlign: "center",
                   }}
@@ -922,32 +874,16 @@ const PortfolioGrid = ({ projects }) => {
                       onClick={() => {
                         navigate(`/projects/${selectedProject.id}`);
                       }}
-                      endIcon={<ReadMoreIcon />}
+                      endIcon={<EastIcon />}
                       sx={{
                         borderColor: theme.palette.primary.main,
                         color: theme.palette.primary.main,
                         textTransform: "uppercase",
                         fontWeight: 200,
+                        p: 3,
                       }}
                     >
-                      More info
-                    </NavButton>
-                  )}
-                  {selectedProject.href2 && (
-                    <NavButton
-                      onClick={() => {
-                        window.open(selectedProject.href2);
-                      }}
-                      endIcon={<LaunchIcon />}
-                      sx={{
-                        backgroundColor: "lightblue",
-                        color: "white",
-                        textTransform: "uppercase",
-                        fontWeight: 200,
-                        "&:hover": { backgroundColor: "skyblue" },
-                      }}
-                    >
-                      Launch website
+                      VIEW PROJECT
                     </NavButton>
                   )}
                 </Box>
@@ -956,7 +892,7 @@ const PortfolioGrid = ({ projects }) => {
                     margin: "auto",
                     display: "flex",
                     flexDirection: "column",
-                    mt: 1,
+                    mt: 3,
                   }}
                 >
                   <Typography sx={{ fontWeight: 700, alignSelf: "center" }}>
@@ -978,25 +914,23 @@ const PortfolioGrid = ({ projects }) => {
                     }}
                   >
                     {" "}
-                    {selectedProject.technologies.map((icon) => {
+                    {selectedProject.technologies.map((icon, index) => {
                       const pathLM = `../assets/technologies/lightmode-large/${icon}.png`;
                       const imgSrcLM = technologyIconsLightmodeLarge[pathLM];
                       const pathDM = `../assets/technologies/darkmode-large/${icon}.png`;
                       const imgSrcDM = technologyIconsDarkmodeLarge[pathDM];
 
                       return (
-                        <>
-                          <img
-                            className="tech"
-                            key={icon}
-                            src={mode === "light" ? imgSrcLM : imgSrcDM}
-                            alt={icon}
-                            style={{
-                              width: "auto",
-                              height: "40px",
-                            }}
-                          />{" "}
-                        </>
+                        <img
+                          className="tech"
+                          key={index}
+                          src={mode === "light" ? imgSrcLM : imgSrcDM}
+                          alt={icon}
+                          style={{
+                            width: "auto",
+                            height: "40px",
+                          }}
+                        />
                       );
                     })}
                   </Box>

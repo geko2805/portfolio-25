@@ -12,6 +12,9 @@ export const lightPalette = {
     default: "#f4f6f8",
     paper: "#ffffff",
     transparent: "##f4f6f8b4",
+
+    project: "#ffffff",
+    projectMain: "#f4f6f8",
   },
   text: {
     primary: "#1e1e1e",
@@ -44,6 +47,8 @@ export const darkPalette = {
     paper: "#112233",
 
     default: "#010101",
+    project: "#010101",
+    projectMain: "#112233",
 
     transparent: "#121212b4",
   },

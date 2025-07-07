@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+import { ThemeContext } from "@emotion/react";
+import { Button, useTheme } from "@mui/material";
 import { useEffect, useRef } from "react";
 
 const NavButton = ({
@@ -10,6 +11,7 @@ const NavButton = ({
   disabled,
 }) => {
   const buttonRef = useRef(null);
+  const theme = useTheme();
 
   return (
     <Button
@@ -23,7 +25,7 @@ const NavButton = ({
         p: "10px 20px 10px 20px",
         cursor: "pointer",
         color: "#000000",
-        bgcolor: "primary",
+        bgcolor: theme.palette.button.main,
         border: "none",
         width: 200,
         height: 40,

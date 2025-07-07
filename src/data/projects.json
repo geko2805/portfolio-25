@@ -7,9 +7,9 @@
     "title": "Meditation Timer",
     "description": "A comprehensive meditation timer built in React, where users can create a custom soundscape, store and retrieve session data (firestore), view their history, see session data on weekly or monthly charts, earn badges for reaching milestones and more",
     "type": "Responsive Web App",
-    "text1": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
-    "text2": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page...",
-    "text3": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page..."
+    "text1": "Fully responsive design, ensuring the timer is fully usable and optimized for any device. Featuring a sleek minimal design with an interactive background effect which utilizes WebGL to change the background while you scroll down the page...",
+    "text2": "The timer allows you to choose basic settings such as your session length, and then choose from a number of gentle start and end tones to ease you in and out of your session. These include a gong, tibetan signing bowl, ting shags and windchimes.",
+    "text3": "Once you have set your basic settings, you can also add additional audio overlays- choosing from the peaceful sounds of ocean/ rain etc. You can also add a guided meditation audio soundtrack to help you settle into the session. Build up your soundscape with additional sound hits to create your fully immersive custom audio experience."
   },
   {
     "id": "nc-news",
@@ -17,41 +17,28 @@
     "iframeLink": "https://gjonesncnews.netlify.app",
     "technologies": ["react", "mui", "node", "psql"],
     "title": "NC News",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
+    "description": "Full-stack showcase comprised of a robust Express RESTful API server, PSQL Database and a React.js frontend for a fictional news website",
     "type": "Full-Stack Web App",
     "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
     "text2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
-    "company": "Northcoders"
+    "company": "Northcoders",
+    "githubLinks": {
+      "frontend": "https://github.com/geko2805/nc-news",
+      "backend": "https://github.com/geko2805/my_nc_news"
+    }
   },
+
   {
-    "id": "gethsworld",
-    "technologies": ["react", "mui", "html", "css", "js"],
-    "title": "Gethsworld",
-    "description": "Inception - the website you are looking at!",
+    "id": "occupy-sound",
+    "href2": "https://www.gethsworld.com/occupy",
+    "iframeLink": "https://www.gethsworld.com/occupy",
+    "technologies": ["html", "css", "js", "soundcloud"],
+    "title": "Occupy Sound",
+    "description": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
     "type": "React Web App",
-    "iframeLink": "https://gethsworld.netlify.app/",
-
-    "previewOnly": true
-  },
-  {
-    "id": "safespace",
-    "technologies": [
-      "react-native",
-      "expo",
-      "ts",
-      "tamagui",
-      "firebase",
-      "maplibre"
-    ],
-    "title": "Safe Space Parking",
-    "description": "Safespace Parking helps you easily find parking spaces that meet your needs, providing peace of mind by showing user reviews and ratings indicating if the space is safe, accessible and within your budget.",
-    "type": "React Native Mobile App",
     "text1": "",
-    "text2": "",
-    "videoLink": "esegdO-L6xw",
-    "company": "Northcoders"
+    "text2": ""
   },
-
   {
     "id": "ready-to-work",
     "technologies": [
@@ -69,17 +56,26 @@
     "text2": "",
     "company": "Brunel"
   },
-
   {
-    "id": "occupy-sound",
-    "href2": "https://www.gethsworld.com/occupy",
-    "iframeLink": "https://www.gethsworld.com/occupy",
-    "technologies": ["html", "css", "js", "soundcloud"],
-    "title": "Occupy Sound",
-    "description": "Responsive single page application for record label Occupy Sound. Featuring a full screen CSS glitch effects, fully custom soundcloud player, dispersion hover effects and more.",
-    "type": "React Web App",
+    "id": "safespace-parking",
+    "technologies": [
+      "react-native",
+      "expo",
+      "ts",
+      "tamagui",
+      "firebase",
+      "maplibre"
+    ],
+    "title": "Safe Space Parking",
+    "description": "Safespace Parking helps you easily find parking spaces that meet your needs, providing peace of mind by showing user reviews and ratings indicating if the space is safe, accessible and within your budget.",
+    "type": "React Native Mobile App",
     "text1": "",
-    "text2": ""
+    "text2": "",
+    "videoLink": "esegdO-L6xw",
+    "company": "Northcoders",
+    "githubLinks": {
+      "github repo": "https://github.com/SafeSpaceTeam1/Safe-Space-Parking"
+    }
   },
 
   {
@@ -95,6 +91,17 @@
     "notResponsive": true,
     "pdf": "DataVisualisation.pdf",
     "company": "Brunel"
+  },
+
+  {
+    "id": "gethsworld",
+    "technologies": ["react", "mui", "html", "css", "js"],
+    "title": "Gethsworld",
+    "description": "Inception - the website you are looking at!",
+    "type": "React Web App",
+    "iframeLink": "https://gethsworld.netlify.app/",
+
+    "previewOnly": true
   },
 
   {
@@ -115,15 +122,7 @@
     "iframeLink": "http://www.scarlettomalley.com/",
     "previewOnly": true
   },
-  {
-    "id": "eat-green",
-    "title": "Cookery App Design",
-    "type": "UI/UX Design",
-    "description": "Vegetarian cooking app design made with Google material design.",
-    "technologies": ["figma", "ps"],
-    "pdf": "appDesign.pdf",
-    "company": "Brunel"
-  },
+
   {
     "id": "16-step-records",
     "title": "Sixteen Step Records",
@@ -150,6 +149,15 @@
     "previewOnly": true
   },
   {
+    "id": "eat-green",
+    "title": "Cookery App Design",
+    "type": "UI/UX Design",
+    "description": "Vegetarian cooking app design made with Google material design.",
+    "technologies": ["figma", "ps"],
+    "pdf": "appDesign.pdf",
+    "company": "Brunel"
+  },
+  {
     "id": "sustainable-world",
     "title": "Sustainable world",
     "type": "360 Marketing Campaign",
@@ -167,5 +175,13 @@
     "company": "Brunel",
     "text1": "The brief was to create a suitable brand which represented the subjects while also being recognisable as part of the existing Brunel brand. My solution features a simple logo design utilising the trademark Brunel red flashes, combined with 4 hexagons representing the 4 S.T.E.M. subjects. The inspiration came from chemical structure of elements, representing how the 4 siubjects make up the whole. The accompanying logo, uses this metaphor to illustrate the subjects, using icons to represent each of the subjects.  ",
     "text2": "As well as designing the logos, branding guidelines and examples were created to show how it should and shouldn't be used as well as giving visual examples of how it would look on products. A website mockup was also created showcasing the features of the new learning centre."
+  },
+  {
+    "id": "3D-bicycle",
+    "technologies": ["maya"],
+    "title": "3D Bicycle Model",
+    "description": "3D Design university project using Maya to model a bicycle from a basic reference, then texture and light for a final render and turntable animation.",
+    "type": "3D Modelling",
+    "company": "Brunel"
   }
 ]

@@ -52,7 +52,10 @@ const SideDrawer = () => {
           position: "absolute",
           right: 0,
           mr: 2,
-          bgcolor: "transparent",
+          mt: 2,
+          bgcolor: theme.palette.button.main,
+
+          // bgcolor: "transparent",
           zIndex: 200000,
         }}
       >
@@ -60,9 +63,11 @@ const SideDrawer = () => {
           component="label"
           htmlFor="close-icon"
           sx={{
+            cursor: "pointer",
+
             fontSize: "sm",
             fontWeight: "lg",
-            color: theme.palette.text.primary,
+            //color: theme.palette.text.primary,
           }}
         >
           Close
@@ -70,7 +75,10 @@ const SideDrawer = () => {
 
         <CloseIcon
           id="close-icon"
-          sx={{ position: "initial", color: theme.palette.text.primary }}
+          sx={{
+            position: "initial",
+            //color: theme.palette.text.primary
+          }}
         />
       </Button>
       <List
