@@ -62,7 +62,7 @@ const Footer = () => {
             }}
           >
             <Link
-              href="https://www.linkedin.com/in/gethin-jones-8b6957a8/"
+              href="https://github.com/geko2805"
               target="_blank"
               rel="noopener noreferrer"
               sx={{
@@ -108,8 +108,7 @@ const Footer = () => {
               </Typography>
             </Link>
             <Link
-              href="https://www.linkedin.com/in/gethin-jones-8b6957a8/"
-              target="_blank"
+              href="/cv"
               rel="noopener noreferrer"
               sx={{
                 color: theme.palette.text.secondary,

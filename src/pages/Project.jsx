@@ -108,6 +108,7 @@ const Project = () => {
     const loadProject = async () => {
       setLoading(true);
       setError(null);
+      window.scrollTo(0, 0);
 
       try {
         const selectedProject = projects.find((p) => p.id === projectId);

@@ -14,9 +14,11 @@ import Project from "./pages/Project";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import CV from "./pages/CV";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { useEffect } from "react";
 
 const App = () => {
   return (
@@ -32,6 +34,8 @@ const App = () => {
         <Route path="/projects/:projectId" element={<Project />} />
 
         <Route path="/about" element={<About />} />
+        <Route path="/cv" element={<CV />} />
+
         <Route path="/contact" element={<Contact />} />
         {/* <Route path="*" element={<ErrorFallback />} /> */}
       </Routes>
