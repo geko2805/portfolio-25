@@ -36,6 +36,10 @@ const Footer = () => {
           maskImage: `linear-gradient(to bottom, transparent 0%, ${theme.palette.background.default} 20%, ${theme.palette.background.default} 100%)`,
           WebkitMaskImage: `linear-gradient(to bottom, transparent 0%, ${theme.palette.background.default} 20%, ${theme.palette.background.default} 100%)`,
           background: `linear-gradient(to top, ${theme.palette.background.default}, transparent)`,
+
+          // maskImage: `transparent`,
+          // WebkitMaskImage: `transparent`,
+          // background: `transparent`,
         })}
       >
         <Box

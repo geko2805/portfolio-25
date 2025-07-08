@@ -323,7 +323,7 @@ const Project = () => {
               >
                 Live Preview
               </Typography>
-              <Preview selectedProject={project} />
+              <Preview selectedProject={project} applyPadding={true} />
               {project.githubLinks && (
                 <Box
                   sx={{

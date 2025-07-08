@@ -52,6 +52,18 @@
   }
 }
 
+@keyframes pulseRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @keyframes scrollDown2 {
   0% {
     transform: translateY(0) translateX(-50%);
@@ -181,21 +193,4 @@
     animation-timeline: view();
     animation-range: 30vh 50vh;
   }
-}
-
-/* src/index.css or equivalent */
-.split-text span {
-  display: inline;
-  transform: translateX(
-    calc(var(--char-start, 0) * -20px)
-  ); /* Slide from left */
-  opacity: calc(1 - var(--char-start, 0));
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.scrollFadeIn {
-  display: inline-block;
 }

@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 import { Box, Typography, Button, useTheme } from "@mui/material";
 
-import { useState } from "react";
-
 import cv from "../assets/pdfs/Gethin Jones CV.pdf";
 
 const Header = () => {
@@ -37,6 +35,7 @@ const Header = () => {
       >
         C.V.
       </Typography>
+
       <embed
         className="fade up delay1"
         src={cv}

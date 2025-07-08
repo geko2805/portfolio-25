@@ -22,7 +22,7 @@ import laptopImage from "../assets/laptop.webp";
 import tabletImage from "../assets/tablet.webp";
 import phoneImage from "../assets/phone.webp";
 
-const Preview = ({ selectedProject }) => {
+const Preview = ({ selectedProject, applyPadding }) => {
   const [iframeDisplay, setIframeDisplay] = useState("laptop");
   const [isModalLoading, setIsModalLoading] = useState(true);
 
@@ -105,12 +105,14 @@ const Preview = ({ selectedProject }) => {
             xs: "100%",
           },
           margin: "auto",
-          px: {
-            xs: 3,
-            sm: 4,
-            md: 5,
-            lg: 5,
-          },
+          ...(applyPadding && {
+            px: {
+              xs: 3,
+              sm: 4,
+              md: 5,
+              lg: 5,
+            },
+          }),
           pt: 2,
           backgroundColor: "theme.palette.iframe.main",
           borderRadius: "5px",
