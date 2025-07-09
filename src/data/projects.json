@@ -138,6 +138,7 @@
     "description": "Bespoke web build for design and project management practice NB Design. Features an introduction animation, a full screen fading slideshow with overlaid logo, custom image galleries, custom animated menu icon and responsive navigation menu.",
     "technologies": ["html", "css", "js"]
   },
+
   {
     "id": "tesseract",
     "title": "Tesseract Recordings",

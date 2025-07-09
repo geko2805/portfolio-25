@@ -191,6 +191,6 @@
   .scrollFadeIn {
     animation: scrollFadeIn linear both;
     animation-timeline: view();
-    animation-range: 30vh 50vh;
+    animation-range: 20vh 40vh;
   }
 }
