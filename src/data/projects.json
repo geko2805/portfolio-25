@@ -19,8 +19,7 @@
     "title": "NC News",
     "description": "Full-stack showcase comprised of a robust Express RESTful API server, PSQL Database and a React.js frontend for a fictional news website",
     "type": "Full-Stack Web App",
-    "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
-    "text2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat erat et lectus porta, eu suscipit magna mattis. Sed ultrices venenatis fringilla. Quisque faucibus, nulla ut auctor congue, justo urna malesuada odio, et rutrum risus augue eu ligula. Vestibulum non vestibulum elit, et aliquam lacus. Duis eget ipsum ullamcorper, pulvinar eros ut, ornare mi. Ut posuere ante ac tempus pretium. Donec euismod, elit eu porttitor finibus, ipsum tellus bibendum lacus,",
+    "text1": "Features a scalable full text search utilizing tsquery and GIN indexing, server-side sorting / filtering and robust REST API backend to handle CRUD operations.",
     "company": "Northcoders",
     "githubLinks": {
       "frontend": "https://github.com/geko2805/nc-news",
