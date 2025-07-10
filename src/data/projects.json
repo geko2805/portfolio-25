@@ -19,7 +19,10 @@
     "title": "NC News",
     "description": "Full-stack showcase comprised of a robust Express RESTful API server, PSQL Database and a React.js frontend for a fictional news website",
     "type": "Full-Stack Web App",
-    "text1": "Features a scalable full text search utilizing tsquery and GIN indexing, server-side sorting / filtering and robust REST API backend to handle CRUD operations.",
+    "text1": "Features a scalable full text search utilizing tsquery and GIN indexing for quick matches of keywords found anywhere in the article body",
+    "text2": "Server-side sorting and filtering accomodated by a robust REST API backend which handles all handle CRUD operations,",
+    "text3": "Users can comment and like on other peoples articles, post, edit and delete their own articles aswell as update their profile picture and browse by topic or use the filters and search to find articles",
+
     "company": "Northcoders",
     "githubLinks": {
       "frontend": "https://github.com/geko2805/nc-news",
@@ -99,7 +102,6 @@
     "description": "Inception - the website you are looking at!",
     "type": "React Web App",
     "iframeLink": "https://gethsworld.netlify.app/",
-
     "previewOnly": true
   },
 

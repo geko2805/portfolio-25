@@ -122,9 +122,25 @@ const Contact = () => {
           boxShadow: 3,
         }}
       >
-        <Typography variant="h5" component="h2" gutterBottom align="center">
-          Get in touch
+        <Typography
+          variant="h5"
+          component="h2"
+          gutterBottom
+          align="center"
+          sx={{ fontWeight: 800 }}
+        >
+          Interested in hiring or collaborating?
         </Typography>
+        <Typography
+          variant="h6"
+          component="h2"
+          sx={{ fontSize: "1.2rem" }}
+          gutterBottom
+          align="center"
+        >
+          Drop me a message and I will get back to you
+        </Typography>
+
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             fullWidth

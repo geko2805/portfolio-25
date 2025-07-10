@@ -43,7 +43,7 @@ const Header = () => {
           top: 0,
           left: 0,
           height: "100%",
-          width: "100%", // Match parent width
+          width: "100%",
           backdropFilter: "blur(5px)",
           maskImage: `linear-gradient(to top, transparent 0%, ${theme.palette.background.default} 30%, ${theme.palette.background.default} 100%)`,
           WebkitMaskImage: `linear-gradient(to top, transparent 0%, ${theme.palette.background.default} 30%, ${theme.palette.background.default} 100%)`,

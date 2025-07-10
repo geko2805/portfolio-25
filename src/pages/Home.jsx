@@ -22,7 +22,7 @@ const Home = () => {
           flexDirection: "column",
           justifyContent: "center",
           width: "100%",
-          minHeight: "100vh",
+          // minHeight: "100vh",
           bgcolor: theme.palette.background.default,
         }}
       >
@@ -180,16 +180,15 @@ const Home = () => {
         </Box>
       </Box>
 
-      <Box
+      {/* <Box
         sx={{
           maxWidth: "800px",
           margin: "auto",
           minHeight: "80vh",
         }}
       >
-        {/* <Preview selectedProject={theta} /> */}
         <Featured />
-      </Box>
+      </Box> */}
     </>
   );
 };
