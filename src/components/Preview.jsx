@@ -119,6 +119,7 @@ const Preview = ({ selectedProject, applyPadding }) => {
         }}
       >
         <Box
+          className="preview"
           sx={{
             width: "100%",
             position: "relative",
@@ -188,7 +189,7 @@ const Preview = ({ selectedProject, applyPadding }) => {
                   : `calc(90% / ${scale})`,
               transform: `translateX(-50%) scale(${scale})`,
               transformOrigin: "center top",
-              //transition: "width 0.4s, height 0.4s, transform 0.4s",
+              transition: "width 0.5s, height 0.5s, marginTop 0.5s",
             }}
             src={selectedProject.iframeLink}
           ></Box>

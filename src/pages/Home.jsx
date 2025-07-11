@@ -17,6 +17,7 @@ const Home = () => {
   return (
     <>
       <Box
+        className="home"
         sx={{
           display: "flex",
           flexDirection: "column",

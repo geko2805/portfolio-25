@@ -195,6 +195,7 @@
   }
 }
 
-* {
+/* smooth bgcolor transitions, excluding preview which has image-background */
+*:not(.preview) {
   transition: background-color 1s;
 }
