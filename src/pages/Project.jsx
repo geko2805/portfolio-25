@@ -219,6 +219,10 @@ const Project = () => {
             mt: 3,
             ml: "40px",
             display: "flex",
+            bgcolor: "transparent",
+            "&:hover .MuiSvgIcon-root": {
+              animation: "pulseLeft 1s infinite",
+            },
           }}
           startIcon={<ArrowBackIcon />}
         >

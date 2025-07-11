@@ -37,6 +37,9 @@ const NavButton = ({
         "&:hover": {
           transform: "translateY(-2px) scale(1.02)",
         },
+        "&:hover .MuiSvgIcon-root": {
+          animation: "pulseRight 1s infinite",
+        },
       }}
       disabled={disabled}
     >

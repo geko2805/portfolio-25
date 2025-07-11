@@ -12,6 +12,7 @@ import udemy from "../assets/udemy.webp";
 import udemyDark from "../assets/udemyDark.webp";
 
 import odin from "../assets/odin.webp";
+import EastIcon from "@mui/icons-material/East";
 
 import { useColorMode } from "../theme/ThemeProvider";
 import NavButton from "../components/NavButton";
@@ -643,6 +644,7 @@ const About = () => {
             onClick={() => {
               navigate("/contact");
             }}
+            endIcon={<EastIcon />}
             sx={{
               mt: 3,
               scrollMarginTop: "10px",
