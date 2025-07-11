@@ -596,12 +596,13 @@ const About = () => {
         <Box className="scrollFadeIn">
           <Button
             onClick={() => {
-              contact.current
-                ? contact.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  })
-                : "";
+              window.scrollTo(0, document.body.scrollHeight); //scroll to end
+              // contact.current
+              //   ? contact.current.scrollIntoView({
+              //       behavior: "smooth",
+              //       block: "start",
+              //     })
+              //   : "";
             }}
             sx={{
               mt: 3,

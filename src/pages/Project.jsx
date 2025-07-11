@@ -270,7 +270,7 @@ const Project = () => {
             height="100%"
             style={{
               objectFit: "contain",
-              maxHeight: "500px",
+              maxHeight: "400px",
             }}
           />
         </Box>
@@ -451,6 +451,8 @@ const Project = () => {
                   mt: 2,
                   width: "100%",
                   maxWidth: "800px",
+                  transition: "transform 0.3s",
+
                   "&:hover": {
                     transform: { xs: "scale(1)", sm: "scale(1.05)" },
                   },
@@ -489,6 +491,8 @@ const Project = () => {
                   mt: 2,
                   width: "100%",
                   maxWidth: "800px",
+                  transition: "transform 0.3s",
+
                   "&:hover": {
                     transform: { xs: "scale(1)", sm: "scale(1.05)" },
                   },
@@ -527,6 +531,8 @@ const Project = () => {
                   width: "100%",
                   maxWidth: "800px",
                   pb: 2,
+                  transition: "transform 0.3s",
+
                   "&:hover": {
                     transform: { xs: "scale(1)", sm: "scale(1.05)" },
                   },
@@ -565,6 +571,8 @@ const Project = () => {
                   mt: 2,
                   width: "100%",
                   maxWidth: "800px",
+                  transition: "transform 0.3s",
+
                   pb: 2,
                   "&:hover": {
                     transform: { xs: "scale(1)", sm: "scale(1.05)" },

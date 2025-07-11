@@ -176,13 +176,5 @@
     "company": "Brunel",
     "text1": "The brief was to create a suitable brand which represented the subjects while also being recognisable as part of the existing Brunel brand. My solution features a simple logo design utilising the trademark Brunel red flashes, combined with 4 hexagons representing the 4 S.T.E.M. subjects. The inspiration came from chemical structure of elements, representing how the 4 siubjects make up the whole. The accompanying logo, uses this metaphor to illustrate the subjects, using icons to represent each of the subjects.  ",
     "text2": "As well as designing the logos, branding guidelines and examples were created to show how it should and shouldn't be used as well as giving visual examples of how it would look on products. A website mockup was also created showcasing the features of the new learning centre."
-  },
-  {
-    "id": "3D-bicycle",
-    "technologies": ["maya"],
-    "title": "3D Bicycle Model",
-    "description": "3D Design university project using Maya to model a bicycle from a basic reference, then texture and light for a final render and turntable animation.",
-    "type": "3D Modelling",
-    "company": "Brunel"
   }
 ]
