@@ -47,8 +47,8 @@ export const darkPalette = {
     paper: "#112233",
 
     default: "#010101",
-    projectMain: "#010101",
-    project: "#112233",
+    project: "#010101",
+    projectMain: "#112233",
 
     transparent: "#121212b4",
   },

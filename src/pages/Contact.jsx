@@ -138,7 +138,7 @@ const Contact = () => {
           gutterBottom
           align="center"
         >
-          Drop me a message and I will get back to you
+          Drop me a message and I will get back to you 🙏
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit} noValidate>

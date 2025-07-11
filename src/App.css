@@ -194,3 +194,7 @@
     animation-range: 20vh 40vh;
   }
 }
+
+* {
+  transition: background-color 1s;
+}

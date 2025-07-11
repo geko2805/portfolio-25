@@ -331,7 +331,6 @@ const PortfolioGrid = ({ projects }) => {
                 >
                   {project.type}
                 </Typography>
-                <Typography variant="body2">Click to Preview</Typography>
               </Overlay>
             </StyledCard>
           </Grid>

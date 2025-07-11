@@ -16,7 +16,8 @@ const Header = () => {
 
   const { mode, setMode, toggleColorMode } = useColorMode();
   const [checked, setChecked] = useState(mode === "dark");
-  const handleToggle = () => {
+  const handleToggle = (event) => {
+    event.target.blur();
     const newChecked = !checked;
     const newMode = newChecked ? "dark" : "light";
     setMode(newMode);
@@ -82,8 +83,22 @@ const Header = () => {
             cursor: "pointer",
           }}
         >
-          <LightModeIcon sx={{ color: theme.palette.text.secondary }} />
-          <Switch
+          {mode === "dark" ? (
+            <LightModeIcon
+              sx={{
+                color: theme.palette.text.secondary,
+                pointerEvents: "none",
+              }}
+            />
+          ) : (
+            <DarkModeIcon
+              sx={{
+                color: theme.palette.text.secondary,
+                pointerEvents: "none",
+              }}
+            />
+          )}
+          {/* <Switch
             checked={checked}
             onChange={handleToggle}
             aria-label="toggle dark mode switch"
@@ -113,8 +128,7 @@ const Header = () => {
                 opacity: 1,
               },
             }}
-          />
-          <DarkModeIcon sx={{ color: theme.palette.text.secondary }} />
+          /> */}
         </Box>
       </Box>
     </Box>
