@@ -15,7 +15,7 @@ export const getTheme = (mode) => {
             borderRadius: "8px",
             //backgroundColor: "rgba(0, 188, 212, 0.5)",
             // backgroundColor: "#87d5fa20",
-            color: "#000000",
+            // color: "#000000",
             backgroundColor: palette.button.main,
             transition: "transform 0.1s",
             "&:hover": {

@@ -53,10 +53,14 @@ const SideDrawer = () => {
           right: 0,
           mr: 2,
           mt: 2,
+
           bgcolor: theme.palette.button.main,
 
           // bgcolor: "transparent",
           zIndex: 200000,
+          "&:hover .MuiSvgIcon-root": {
+            animation: "spin 1s",
+          },
         }}
       >
         <Typography
@@ -64,6 +68,7 @@ const SideDrawer = () => {
           htmlFor="close-icon"
           sx={{
             cursor: "pointer",
+            color: "#000000",
 
             fontSize: "sm",
             fontWeight: "lg",
@@ -77,6 +82,8 @@ const SideDrawer = () => {
           id="close-icon"
           sx={{
             position: "initial",
+            color: "#000000",
+
             //color: theme.palette.text.primary
           }}
         />

@@ -219,6 +219,7 @@ const Project = () => {
             mt: 3,
             ml: "40px",
             display: "flex",
+            color: theme.palette.text.primary,
             bgcolor: "transparent",
             "&:hover .MuiSvgIcon-root": {
               animation: "pulseLeft 1s infinite",
@@ -342,6 +343,7 @@ const Project = () => {
                   {Object.keys(project.githubLinks).map((link) => {
                     return (
                       <Button
+                        sx={{ p: "10px 20px 10px 20px", color: "#000000" }}
                         startIcon={<GitHubIcon />}
                         onClick={() => {
                           window.open(project.githubLinks[link]);
@@ -570,14 +572,32 @@ const Project = () => {
                 alignItems: "center",
               }}
             >
-              <NavButton
-                startIcon={<LaunchIcon />}
+              <Button
+                endIcon={<LaunchIcon />}
                 onClick={() => {
                   window.open(project.href2);
                 }}
+                sx={{
+                  p: "10px 20px 10px 20px",
+                  cursor: "pointer",
+                  color: "#000000",
+                  width: 200,
+                  height: 40,
+                  transition: "transform 0.3s",
+                  fontSize: "1rem",
+                  lineHeight: "1.2rem",
+                  textTransform: "capitalize",
+                  borderRadius: "5px",
+                  "&:hover": {
+                    transform: "translateY(-2px) scale(1.02)",
+                  },
+                  "&:hover .MuiSvgIcon-root": {
+                    animation: "scalePulse 1s infinite",
+                  },
+                }}
               >
                 Launch Project
-              </NavButton>
+              </Button>
             </Box>
           )}
         </Box>

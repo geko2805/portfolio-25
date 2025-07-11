@@ -398,7 +398,12 @@ const PortfolioGrid = ({ projects }) => {
                     <Button
                       onClick={closeModal}
                       sx={{
+                        color: "#000000",
+
                         bgcolor: theme.palette.button.main,
+                        "&:hover .MuiSvgIcon-root": {
+                          animation: "spin 1s",
+                        },
                       }}
                       endIcon={<CloseIcon />}
                     >
@@ -472,6 +477,9 @@ const PortfolioGrid = ({ projects }) => {
                           fontWeight: 200,
                           "&:hover": {
                             backgroundColor: theme.palette.accent.main,
+                          },
+                          "&:hover .MuiSvgIcon-root": {
+                            animation: "scalePulse 1s infinite",
                           },
                         }}
                       >

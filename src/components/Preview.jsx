@@ -94,6 +94,9 @@ const Preview = ({ selectedProject, applyPadding }) => {
             "&:hover": {
               backgroundColor: theme.palette.accent.main,
             },
+            "&:hover .MuiSvgIcon-root": {
+              animation: "scalePulse 1s infinite",
+            },
           }}
         >
           Launch
