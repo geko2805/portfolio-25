@@ -101,8 +101,7 @@
     "title": "Gethsworld",
     "description": "Inception - the website you are looking at!",
     "type": "React Web App",
-    "iframeLink": "https://gethsworld.netlify.app/",
-    "previewOnly": true
+    "iframeLink": "https://gethsworld.netlify.app/"
   },
 
   {

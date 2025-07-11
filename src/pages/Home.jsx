@@ -163,13 +163,12 @@ const Home = () => {
         >
           <NavButton
             variant="contained"
-            // href={selectedItem.href2}
             onClick={() => {
               navigate("/projects");
             }}
             target="_blank"
             rel="noopener noreferrer"
-            endIcon={<EastIcon className="nav-button-icon" />}
+            endIcon={<EastIcon />}
             sx={{
               color: "white",
               textTransform: "uppercase",

@@ -1,10 +1,13 @@
 import projects from "../data/projects.json";
 
 // Load all thumbnails eagerly
-const thumbs = import.meta.glob("/src/assets/thumbs/*.{png,jpg,jpeg,svg}", {
-  eager: true,
-  import: "default",
-});
+const thumbs = import.meta.glob(
+  "/src/assets/thumbs/*.{png,jpg,jpeg,svg,webp}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 
 // Load all full-size images (static glob pattern)
 const fullSizeImagesGlob = import.meta.glob(

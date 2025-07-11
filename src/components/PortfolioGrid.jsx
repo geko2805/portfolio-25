@@ -57,7 +57,8 @@ import { useColorMode } from "../theme/ThemeProvider";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: "relative",
-  height: 250,
+  backgroundColor: "#fff",
+  height: "auto",
   overflow: "hidden",
   "&:hover .overlay": {
     opacity: 1,
@@ -259,19 +260,21 @@ const PortfolioGrid = ({ projects }) => {
         {projects.map((project) => (
           <Grid
             item
-            // size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
+            size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            // xs={12}
+            // sm={6}
+            // md={4}
+            // lg={3}
             key={project.id}
             sx={{
               animationName: "fadeIn",
               animationDuration: "2s",
-              animationDelay: "1.3s",
+              animationDelay: "1.4s",
               animationIterationCount: 1,
               animationFillMode: "forwards",
               opacity: 0,
+              // bgcolor: "red",
             }}
           >
             <StyledCard
@@ -281,15 +284,16 @@ const PortfolioGrid = ({ projects }) => {
               <CardMedia
                 className="projectImg"
                 component="img"
-                height="250"
                 image={getThumbnail(project.id)}
                 alt={`${project.title} thumbnail`}
                 sx={{
-                  objectFit: "contain",
-                  maxWidth: 300,
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: 400,
                   margin: "auto",
-                  width: 250,
-                  // transform: "scale(0.92)",
+                  objectFit: "contain",
+                  aspectRatio: "1 / 1",
+                  transition: "transform 0.4s",
                 }}
               />
 

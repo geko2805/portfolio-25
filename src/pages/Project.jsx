@@ -17,6 +17,8 @@ import {
   getThumbnail,
   getProjectPdf,
 } from "../utils/loadImages";
+import { getFileSize } from "../utils/getFileSize";
+
 import { useColorMode } from "../theme/ThemeProvider";
 
 import northcodersLogo from "../assets/northcoders.webp";
@@ -92,15 +94,19 @@ const technologyIconsLightmodeLarge = import.meta.glob(
 
 const Project = () => {
   const { mode } = useColorMode();
+  const theme = useTheme();
 
   const { projectId } = useParams();
+
   const [project, setProject] = useState(null);
   const [fullSizeImages, setFullSizeImages] = useState([]);
   const [pdfFile, setPdfFile] = useState(null);
+  const [pdfFileSize, setPdfFileSize] = useState("");
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const navigate = useNavigate();
-  const theme = useTheme();
   const scrollDown = useRef(null);
   const topOfPage = useRef(null);
 
@@ -116,12 +122,13 @@ const Project = () => {
           throw new Error(`No project found for ID: ${projectId}`);
         }
         const images = await loadProjectImages(projectId);
+        setFullSizeImages(images);
+
         let pdf = null;
         if (selectedProject.pdf) {
           pdf = await getProjectPdf(projectId);
           console.log(`Loaded PDF for ${projectId}:`, pdf);
         }
-        setFullSizeImages(images);
         setPdfFile(pdf);
         setProject(selectedProject);
       } catch (err) {
@@ -133,6 +140,24 @@ const Project = () => {
     };
     loadProject();
   }, [projectId]);
+
+  // useEffect to check file size of pdf
+  useEffect(() => {
+    const fetchFileSize = async () => {
+      if (!pdfFile) return;
+
+      const sizeInBytes = await getFileSize(pdfFile);
+      if (sizeInBytes !== null) {
+        const size =
+          sizeInBytes < 1024 * 1024
+            ? `${(sizeInBytes / 1024).toFixed(1)} KB`
+            : `${(sizeInBytes / 1024 / 1024).toFixed(2)} MB`;
+        setPdfFileSize(size);
+      }
+    };
+
+    fetchFileSize();
+  }, [pdfFile]);
 
   if (loading) {
     return (
@@ -715,7 +740,7 @@ const Project = () => {
             download={`${project.title}.pdf`}
             sx={{ mt: 2 }}
           >
-            Download PDF
+            Download PDF ({pdfFileSize})
           </Button>
         </Box>
       )}
