@@ -86,10 +86,10 @@
     "iframeLink": "https://www.gethsworld.com/datavis/",
     "title": "Climate Change Visualiser",
     "technologies": ["d3", "html", "css", "js"],
-    "description": "Description for item 2",
+    "description": "An interactive graphic/ desktop web application showing world development and sustainability data onto a 3D globe. Created with D3.JS, this application allows users to easily visualize large amounts of data and see how the values have changed over time, by updating scrolling through years and watching the globe update.",
     "type": "3D Data Visualisation",
-    "text1": "",
-    "text2": "",
+    "text1": "The application impressed staff at Brunel University and was exhibited at Brunel University degree show as well as the highly revered New Designers exhibition in London.",
+    "text2": "The data is mapped onto a 3D rendered globe which is shaded according to the value of the data for the corresponding country. Users can pan around and get data for each country for the selected year. The user can also slide through the past 50 years and the globe will update to show the data for that year. Each country on the globe is coloured for each data set depending on a unique set of bands showing highest to lowest to make the data really easy to digest.",
     "notResponsive": true,
     "pdf": "DataVisualisation.pdf",
     "company": "Brunel"
